@@ -1,0 +1,66 @@
+﻿.ssGridToggle {
+    margin: 0px !important;
+}
+
+    .ssGridToggle tr td {
+        padding: 4px !important;
+    }
+
+.GridViewHeader th {
+    padding: 2px 4px;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.HideGridColumn {
+    display: none !important;
+}
+
+.ssGridToggle, .ssGridToggle th, .ssGridToggle td {
+    border: 1px solid #DADADA;
+}
+
+.grid-action {
+    width: 100%;
+    display: -webkit-flex;
+}
+
+    .grid-action .action {
+        -webkit-flex: 1;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+
+.GridViewToggle {
+    border: 0px solid #545352;
+    background-color: white;
+    font-size: 11px;
+    text-decoration: none;
+    vertical-align: top;
+    padding: 5px;
+    margin: 5px;
+}
+
+.GridViewHeader {
+    color: #2B7E8F;
+    font-style: normal;
+    font-weight: bold;
+    background-color: #E0EFFC;
+}
+
+.GridViewFooterStyle {
+    background-color: whitesmoke;
+    color: #000066;
+}
+
+.GridViewPagerStyle       
+{
+    background-color:whitesmoke;
+    color:blue;
+    font-size:medium;
+    font-style:normal;
+    font-weight:normal;
+    text-align:left;
+}

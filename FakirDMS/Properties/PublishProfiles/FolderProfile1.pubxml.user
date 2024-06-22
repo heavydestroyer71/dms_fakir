@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Publish</_PublishTargetUrl>
+    <History>True|2024-06-22T10:21:14.4541625Z;True|2024-06-13T16:34:26.9112876+06:00;True|2024-06-13T11:23:46.4679682+06:00;True|2024-06-13T11:23:05.5054185+06:00;True|2024-06-12T17:24:12.6182411+06:00;True|2024-06-10T13:14:17.3596578+06:00;True|2024-06-05T17:03:50.5528153+06:00;True|2024-06-05T16:02:34.0913337+06:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="assets/css/adminlte.css">
+      <publishTime>10/05/2023 01:23:30</publishTime>
+    </File>
+    <File Include="assets/css/CalenderTheme.css">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/css/cssGridView.css">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/css/dashboard.css">
+      <publishTime>10/05/2023 01:23:30</publishTime>
+    </File>
+    <File Include="assets/css/login.css">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/css/styles.css">
+      <publishTime>10/25/2023 13:12:10</publishTime>
+    </File>
+    <File Include="assets/img/6-6.jpg">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/calender.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/close.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/Delete.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/download.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/edit.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/history.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/login-logo.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/img/preview.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/adminlte.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/adminlte.js.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/adminlte.min.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/adminlte.min.js.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.bundle.min.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.bundle.min.js.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.js.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.min.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.min.js.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/jquery.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/jquery.min.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/jquery.min.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/jquery.slim.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/jquery.slim.min.js">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/js/jquery.slim.min.map">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/font-awesome.css">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/fontawesome-webfont.eot">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/fontawesome-webfont.svg">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/fontawesome-webfont.ttf">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/fontawesome-webfont.woff">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/fontawesome-webfont.woff2">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="assets/webfonts/FontAwesome.otf">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="AutoServices.asmx">
+      <publishTime>10/25/2023 12:21:24</publishTime>
+    </File>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>09/07/2023 17:58:18</publishTime>
+    </File>
+    <File Include="bin/ClosedXML.dll">
+      <publishTime>01/05/2024 20:14:24</publishTime>
+    </File>
+    <File Include="bin/CoreLibrary.dll">
+      <publishTime>06/22/2024 16:21:13</publishTime>
+    </File>
+    <File Include="bin/CoreLibrary.dll.config">
+      <publishTime>06/22/2024 16:14:39</publishTime>
+    </File>
+    <File Include="bin/CoreLibrary.pdb">
+      <publishTime>06/22/2024 16:21:13</publishTime>
+    </File>
+    <File Include="bin/DocumentFormat.OpenXml.dll">
+      <publishTime>03/15/2022 07:39:18</publishTime>
+    </File>
+    <File Include="bin/ExcelNumberFormat.dll">
+      <publishTime>10/02/2020 14:42:28</publishTime>
+    </File>
+    <File Include="bin/FokirDMS.dll">
+      <publishTime>06/22/2024 16:21:13</publishTime>
+    </File>
+    <File Include="bin/FokirDMS.pdb">
+      <publishTime>06/22/2024 16:21:13</publishTime>
+    </File>
+    <File Include="bin/Irony.dll">
+      <publishTime>07/18/2018 07:40:26</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>09/07/2023 17:58:20</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/05/2023 01:23:32</publishTime>
+    </File>
+    <File Include="bin/QRCoder.dll">
+      <publishTime>12/12/2021 18:30:50</publishTime>
+    </File>
+    <File Include="bin/SixLabors.Fonts.dll">
+      <publishTime>08/11/2023 18:04:56</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>02/19/2020 16:05:18</publishTime>
+    </File>
+    <File Include="bin/System.IO.Packaging.dll">
+      <publishTime>10/23/2021 05:49:36</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>02/19/2020 16:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>05/15/2018 19:29:44</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>11/15/2019 14:37:58</publishTime>
+    </File>
+    <File Include="bin/XLParser.dll">
+      <publishTime>05/20/2022 14:49:02</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>01/18/2024 18:17:31</publishTime>
+    </File>
+    <File Include="DocumentsApprove/approve.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="DocumentsDraft/draft.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/approve.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/dms_logo.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/draft.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/fal_logo.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/loading-logo.gif">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/no_photo.jpg">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Images/road-barrier.png">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="MasterPage.Master">
+      <publishTime>10/27/2023 01:04:08</publishTime>
+    </File>
+    <File Include="UI/AllDocumentReport.aspx">
+      <publishTime>06/13/2024 15:21:33</publishTime>
+    </File>
+    <File Include="UI/ArchiveList.aspx">
+      <publishTime>10/29/2023 11:23:44</publishTime>
+    </File>
+    <File Include="UI/Category.aspx">
+      <publishTime>01/18/2024 18:10:06</publishTime>
+    </File>
+    <File Include="UI/Dashborad.aspx">
+      <publishTime>10/25/2023 17:50:34</publishTime>
+    </File>
+    <File Include="UI/DocumentMCD.aspx">
+      <publishTime>02/25/2024 18:15:30</publishTime>
+    </File>
+    <File Include="UI/DocumentSCM.aspx">
+      <publishTime>06/12/2024 17:22:26</publishTime>
+    </File>
+    <File Include="UI/DocumentSCM_Bak.aspx">
+      <publishTime>02/25/2024 18:10:11</publishTime>
+    </File>
+    <File Include="UI/DocumentStore.aspx">
+      <publishTime>10/29/2023 09:50:38</publishTime>
+    </File>
+    <File Include="UI/Flowpath.aspx">
+      <publishTime>01/31/2024 17:57:03</publishTime>
+    </File>
+    <File Include="UI/ForceMovement.aspx">
+      <publishTime>10/28/2023 13:44:32</publishTime>
+    </File>
+    <File Include="UI/Home.aspx">
+      <publishTime>01/17/2024 17:23:49</publishTime>
+    </File>
+    <File Include="UI/Lookup.aspx">
+      <publishTime>10/25/2023 17:52:02</publishTime>
+    </File>
+    <File Include="UI/MenuRole.aspx">
+      <publishTime>10/25/2023 02:33:08</publishTime>
+    </File>
+    <File Include="UI/OwnDocument.aspx">
+      <publishTime>10/25/2023 03:30:48</publishTime>
+    </File>
+    <File Include="UI/PrintPreview.aspx">
+      <publishTime>02/27/2024 16:17:30</publishTime>
+    </File>
+    <File Include="UI/PrintPreviewScm.aspx">
+      <publishTime>02/27/2024 16:48:33</publishTime>
+    </File>
+    <File Include="UI/Profile.aspx">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="UI/Reports/BillReceiveSlip.aspx">
+      <publishTime>04/24/2024 13:46:34</publishTime>
+    </File>
+    <File Include="UI/Reports/html_challan.aspx">
+      <publishTime>09/17/2023 01:05:04</publishTime>
+    </File>
+    <File Include="UI/Reports/html_lc.aspx">
+      <publishTime>09/17/2023 01:05:04</publishTime>
+    </File>
+    <File Include="UI/Reports/html_mrr.aspx">
+      <publishTime>09/17/2023 01:05:04</publishTime>
+    </File>
+    <File Include="UI/Reports/html_pi.aspx">
+      <publishTime>09/17/2023 01:05:04</publishTime>
+    </File>
+    <File Include="UI/Reports/html_po.aspx">
+      <publishTime>09/17/2023 01:04:14</publishTime>
+    </File>
+    <File Include="UI/StoreSetup.aspx">
+      <publishTime>10/25/2023 15:09:50</publishTime>
+    </File>
+    <File Include="UI/TaskAssign.aspx">
+      <publishTime>01/16/2024 21:29:01</publishTime>
+    </File>
+    <File Include="UI/TeamSetup.aspx">
+      <publishTime>10/28/2023 13:39:52</publishTime>
+    </File>
+    <File Include="UI/Tracking.aspx">
+      <publishTime>10/25/2023 17:50:32</publishTime>
+    </File>
+    <File Include="UI/UnauthorizedPage.aspx">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="UI/User.aspx">
+      <publishTime>10/25/2023 02:40:42</publishTime>
+    </File>
+    <File Include="UI/UserCompany.aspx">
+      <publishTime>12/06/2023 14:20:22</publishTime>
+    </File>
+    <File Include="UI/Viewer.aspx">
+      <publishTime>09/16/2023 23:57:58</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/22/2024 16:21:14</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
