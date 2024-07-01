@@ -15,67 +15,6 @@
     <asp:UpdatePanel runat="server" ID="uppdatePanel">
         <ContentTemplate>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="info-box" style="border: 1px solid #00C0EF; border-bottom: 2px solid #00C0EF;">
-                        <span class="info-box-icon" style="background-color: #00C0EF; color: #ffffff;">
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Parking Status</span>
-                            <div class="row">
-                                <div class="col-4">Total<asp:LinkButton runat="server" ID="LinkButton1" Text="0" ForeColor="#00C0EF" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">On-Time<asp:LinkButton runat="server" ID="LinkButton2" Text="0" ForeColor="#00C0EF" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">Delay<asp:LinkButton runat="server" ID="LinkButton3" Text="0" ForeColor="#00C0EF" class="info-box-number"></asp:LinkButton></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="info-box" style="border: 1px solid #f48449; border-bottom: 2px solid #f48449;">
-                        <span class="info-box-icon" style="background-color: #f48449; color: white;">
-                            <i class="fa fa-paper-plane-o" aria-hidden="true"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Posting Status</span>
-                            <div class="row">
-                                <div class="col-4">Total<asp:LinkButton runat="server" ID="LinkButton4" Text="0" ForeColor="#f48449" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">On-Time<asp:LinkButton runat="server" ID="LinkButton5" Text="0" ForeColor="#f48449" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">Delay<asp:LinkButton runat="server" ID="LinkButton6" Text="0" ForeColor="#f48449" class="info-box-number"></asp:LinkButton></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="info-box" style="border: 1px solid #32c07a; border-bottom: 2px solid #32c07a;">
-                        <span class="info-box-icon" style="background-color: #32c07a; color: white;">
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Closing Status</span>
-                            <div class="row">
-                                <div class="col-4">Total<asp:LinkButton runat="server" ID="LinkButton7" Text="0" ForeColor="#32c07a" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">On-Time<asp:LinkButton runat="server" ID="LinkButton8" Text="0" ForeColor="#32c07a" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">Delay<asp:LinkButton runat="server" ID="LinkButton9" Text="0" ForeColor="#32c07a" class="info-box-number"></asp:LinkButton></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-3">
-                    <div class="info-box" style="border: 1px solid #ff3232; border-bottom: 2px solid #ff3232;">
-                        <span class="info-box-icon" style="background-color: #ff3232; color: white;">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Allocation Status</span>
-                            <div class="row">
-                                <div class="col-4">Total<asp:LinkButton runat="server" ID="LinkButton10" Text="20" ForeColor="#ff3232" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">On-Time<asp:LinkButton runat="server" ID="LinkButton11" Text="12" ForeColor="#ff3232" class="info-box-number"></asp:LinkButton></div>
-                                <div class="col-4">Delay<asp:LinkButton runat="server" ID="LinkButton12" Text="5" ForeColor="#ff3232" class="info-box-number"></asp:LinkButton></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="panel panel-info" style="margin-top: 15px">
                 <div class="panel-header">Document - Search Criteria</div>

@@ -24,43 +24,44 @@ namespace FakirDMS
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
-            { 
-                String sQuery = @"SELECT UserID as UserID, UserName as UserName, LoginID, ISNULL(CompanyID,1) as CompanyID, DepartmentID, Password
-                                  FROM Sys_Users  WHERE LoginID='" + txtEmployeeId.Text.Trim() + "'";
+            {
+				String sQuery = @"SELECT u.UserID as UserID, u.UserName as UserName, uc.FlowId as FlowId, u.LoginID, ISNULL(u.CompanyID,1) as CompanyID, u.DepartmentID, u.Password FROM Sys_Users u left join Sys_UserCompany uc on u.UserId = uc.UserId WHERE u.LoginID='" + txtEmployeeId.Text.Trim() + "'";
 
-                _dataManager = new DataManager();
+
+				_dataManager = new DataManager();
                 DataTable dtUser = _dataManager.GetDataTable(sQuery);
 
-                if (dtUser.Rows.Count > 0)
-                {
-                    String sEncryptPassword = UtilityClass.Encrypt(txtPassword.Text.Trim(), true);
-                    if (sEncryptPassword.Equals(dtUser.Rows[0]["Password"].ToString()))
-                    {
-                        userCookie = new Cookie();
-                        userCookie.SetCookie(CookieKey.UserId.ToString(), dtUser.Rows[0]["UserID"].ToString());
-                        userCookie.SetCookie(CookieKey.EmployeeId.ToString(), txtEmployeeId.Text.Trim());
-                        userCookie.SetCookie(CookieKey.CompanyId.ToString(), dtUser.Rows[0]["CompanyId"].ToString());
-                        userCookie.SetCookie(CookieKey.DepartmentId.ToString(), dtUser.Rows[0]["DepartmentId"].ToString());
-                        userCookie.SetCookie(CookieKey.UserName.ToString(), dtUser.Rows[0]["UserName"].ToString());
+				if (dtUser.Rows.Count > 0)
+				{
+					String sEncryptPassword = UtilityClass.Encrypt(txtPassword.Text.Trim(), true);
+					if (sEncryptPassword.Equals(dtUser.Rows[0]["Password"].ToString()))
+					{
+						userCookie = new Cookie();
+						userCookie.SetCookie(CookieKey.UserId.ToString(), dtUser.Rows[0]["UserID"].ToString());
+						userCookie.SetCookie(CookieKey.RoleId.ToString(), dtUser.Rows[0]["FlowId"].ToString()); //role id is flow id
+						userCookie.SetCookie(CookieKey.EmployeeId.ToString(), txtEmployeeId.Text.Trim());
+						userCookie.SetCookie(CookieKey.CompanyId.ToString(), dtUser.Rows[0]["CompanyId"].ToString());
+						userCookie.SetCookie(CookieKey.DepartmentId.ToString(), dtUser.Rows[0]["DepartmentId"].ToString());
+						userCookie.SetCookie(CookieKey.UserName.ToString(), dtUser.Rows[0]["UserName"].ToString());
 
 
-                        //UpdateItemCategory("0");
+						//UpdateItemCategory("0");
 
-                        LoadUserWisMenuList();
-                        Response.Redirect("~/UI/Home.aspx", false);
-                    }
-                    else
-                    {
-                        DisplayMessage("Sorry! Password Invalid! Try Again.");
-                    }
-                }
-                else
-                {
-                    userCookie.ClearCookie();
-                    userCookie.RemoveCookie();
-                    DisplayMessage("Sorry! Invalid Login! Try Again.");
-                }
-            }
+						LoadUserWisMenuList();
+						Response.Redirect("~/UI/Home.aspx", false);
+					}
+					else
+					{
+						DisplayMessage("Sorry! Password Invalid! Try Again.");
+					}
+				}
+				else
+				{
+					userCookie.ClearCookie();
+					userCookie.RemoveCookie();
+					DisplayMessage("Sorry! Invalid Login! Try Again.");
+				}
+			}
             catch (Exception ex)
             {
                 DisplayMessage("Login Failed.\\n \\nError: " + ex.Message);

@@ -107,7 +107,8 @@
                 <asp:BoundField HeaderText="Id" DataField="Id" HeaderStyle-CssClass="HideGridColumn" ItemStyle-CssClass="HideGridColumn" />
                 <asp:TemplateField HeaderText="Purchase Order" ItemStyle-Width="200px" HeaderStyle-Width="200px">
                 <ItemTemplate>
-                <asp:HyperLink ID="gHlPOPath" runat="server" NavigateUrl='<%#Eval("ReportPath") %>' Text='<%#Eval("RefNo") %>' Target="_blank"></asp:HyperLink>
+                <%--<asp:HyperLink ID="gHlPOPath" runat="server" NavigateUrl='<%#Eval("ReportPath") %>' Text='<%#Eval("RefNo") %>' Target="_blank"></asp:HyperLink>--%>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='#' Text='<%#Eval("RefNo") %>'></asp:HyperLink>
                 </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField HeaderText="Supplier" DataField="SupplierName" />

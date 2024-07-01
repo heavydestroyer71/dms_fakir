@@ -1860,7 +1860,7 @@ namespace FakirDMS.UI
                 newRow["Date"] = row["WO_DATE"].ToString().Replace("&nbsp;", "");
                 newRow["Supplier"] = row["SUPPLIER_NAME"].ToString().Replace("&nbsp;", "");
                 //newRow["Category"] = row["ITEM_CATEGORY_NAME"].ToString().Replace("&nbsp;", "");
-                newRow["ReportPath"] = "http://192.168.100.4/fakirfashion_erp/commercial/work_order/requires/spare_parts_work_order_controller.php?data=" + row["ID"].ToString().Replace("&nbsp;", "") + "&action=spare_parts_work_order_print2&dms_token=FFLDMS2024";
+                //newRow["ReportPath"] = "#";//"http://192.168.100.4/fakirfashion_erp/commercial/work_order/requires/spare_parts_work_order_controller.php?data=" + row["ID"].ToString().Replace("&nbsp;", "") + "&action=spare_parts_work_order_print2&dms_token=FFLDMS2024";
                 
                 NewDataTable.Rows.Add(newRow);
             }

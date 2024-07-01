@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="FakirDMS.Home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Home_bak.aspx.cs" Inherits="FakirDMS.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server">
     <link href="../assets/css/dashboard.css" rel="stylesheet" />

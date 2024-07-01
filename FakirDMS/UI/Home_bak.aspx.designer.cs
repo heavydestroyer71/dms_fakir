@@ -11,7 +11,7 @@ namespace FakirDMS
 {
 
 
-    public partial class Home
+    public partial class Home_bak
     {
 
         /// <summary>

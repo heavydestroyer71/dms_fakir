@@ -11,115 +11,232 @@ namespace FakirDMS
 {
 
 
-    public partial class Home
-    {
+	public partial class Home
+	{
 
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+		/// <summary>
+		/// dashboard_all control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dashboard_all;
 
-        /// <summary>
-        /// lbtnOwnDrafted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOwnDrafted;
+		/// <summary>
+		/// txtParkingTotal control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtParkingTotal;
 
-        /// <summary>
-        /// lbtnOwnSubmitted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOwnSubmitted;
+		/// <summary>
+		/// txtParkingOntime control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtParkingOntime;
 
-        /// <summary>
-        /// lbtnOwnApproved control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOwnApproved;
+		/// <summary>
+		/// txtParkingDelay control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtParkingDelay;
 
-        /// <summary>
-        /// lbtnOwnRejected control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOwnRejected;
+		/// <summary>
+		/// txtPostingTotal control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtPostingTotal;
 
-        /// <summary>
-        /// spanTotalDrafted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalDrafted;
+		/// <summary>
+		/// txtPostingOntime control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtPostingOntime;
 
-        /// <summary>
-        /// spanTotalSubmitted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalSubmitted;
+		/// <summary>
+		/// txtPostingDelay control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtPostingDelay;
 
-        /// <summary>
-        /// spanTotalApproved control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalApproved;
+		/// <summary>
+		/// txtClosingTotal control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtClosingTotal;
 
-        /// <summary>
-        /// spanTotalRejected control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalRejected;
+		/// <summary>
+		/// txtClosingOntime control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtClosingOntime;
 
-        /// <summary>
-        /// gvOwnDocuments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvOwnDocuments;
+		/// <summary>
+		/// txtClosingDelay control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtClosingDelay;
 
-        /// <summary>
-        /// gvWorkflowDocument control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvWorkflowDocument;
+		/// <summary>
+		/// txtAllocationTotal control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton txtAllocationTotal;
 
-        /// <summary>
-        /// updateProgress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress updateProgress;
-    }
+		/// <summary>
+		/// dashboard_status control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dashboard_status;
+
+		/// <summary>
+		/// lbtnOwnDrafted control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton lbtnOwnDrafted;
+
+		/// <summary>
+		/// lbtnOwnSubmitted control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton lbtnOwnSubmitted;
+
+		/// <summary>
+		/// lbtnOwnApproved control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton lbtnOwnApproved;
+
+		/// <summary>
+		/// lbtnOwnRejected control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.LinkButton lbtnOwnRejected;
+
+		/// <summary>
+		/// dashboard_total control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl dashboard_total;
+
+		/// <summary>
+		/// spanTotalDrafted control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalDrafted;
+
+		/// <summary>
+		/// spanTotalSubmitted control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalSubmitted;
+
+		/// <summary>
+		/// spanTotalApproved control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalApproved;
+
+		/// <summary>
+		/// spanTotalRejected control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTotalRejected;
+
+		/// <summary>
+		/// UpdatePanel1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+		/// <summary>
+		/// gvOwnDocuments control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView gvOwnDocuments;
+
+		/// <summary>
+		/// gvWorkflowDocument control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView gvWorkflowDocument;
+
+		/// <summary>
+		/// updateProgress control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.UpdateProgress updateProgress;
+	}
 }

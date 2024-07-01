@@ -188,7 +188,6 @@
     <Content Include="UI\DocumentMCD.aspx" />
     <Content Include="UI\DocumentSCM_Bak.aspx" />
     <Content Include="UI\DocumentStore.aspx" />
-    <Content Include="UI\Home - Copy.aspx" />
     <Content Include="UI\PrintPreviewScm.aspx" />
     <Content Include="UI\Reports\BillReceiveSlip.aspx" />
     <Content Include="UI\TaskAssign.aspx" />
@@ -280,13 +279,6 @@
     </Compile>
     <Compile Include="UI\DocumentStore.aspx.designer.cs">
       <DependentUpon>DocumentStore.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Home - Copy.aspx.cs">
-      <DependentUpon>Home - Copy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UI\Home - Copy.aspx.designer.cs">
-      <DependentUpon>Home - Copy.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\PrintPreviewScm.aspx.cs">
       <DependentUpon>PrintPreviewScm.aspx</DependentUpon>

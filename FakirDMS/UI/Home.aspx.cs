@@ -26,23 +26,56 @@ namespace FakirDMS
 
             if (!IsPostBack)
             {
-				LoadDashboardData();
-				if (_user.GetCookie(CookieKey.RoleId.ToString()) == "2" || _user.GetCookie(CookieKey.RoleId.ToString()) == "5")
+				LoadTopDashboardData();
+                LoadDashboardData();
+				if (_user.GetCookie(CookieKey.RoleId.ToString()) == "2" )
 				{
 					dashboard_status.Visible = true;
 					dashboard_total.Visible = true;
 					dashboard_all.Visible = false;
 				}
-				else if (_user.GetCookie(CookieKey.RoleId.ToString()) == "6" || _user.GetCookie(CookieKey.RoleId.ToString()) == "4" || _user.GetCookie(CookieKey.RoleId.ToString()) == "3")
+				else if (_user.GetCookie(CookieKey.RoleId.ToString()) == "6" || _user.GetCookie(CookieKey.RoleId.ToString()) == "4" || _user.GetCookie(CookieKey.RoleId.ToString()) == "3" || _user.GetCookie(CookieKey.RoleId.ToString()) == "5" )
 				{
 					dashboard_all.Visible = true;
 					dashboard_total.Visible = true;
 					dashboard_status.Visible = false;
 				}
+
 			}
         }
+		protected void LoadTopDashboardData()
+		{
+			try
+			{
+				_dataManager = new DataManager();
+				SqlParameter[] parameters = new SqlParameter[1]
+				{
+						_dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
+				};
+				DataSet dsDashboard = _dataManager.GetDataSet("SP_SYS_USER_TASK_DASHBOARD", parameters);
 
-        protected void LoadDashboardData()
+				if (dsDashboard.Tables[0].Rows.Count > 0)
+				{
+					txtParkingTotal.Text = dsDashboard.Tables[0].Rows[0]["TotParking"].ToString();
+					txtParkingOntime.Text = dsDashboard.Tables[0].Rows[0]["ParkingOntime"].ToString();
+					txtParkingDelay.Text = dsDashboard.Tables[0].Rows[0]["ParkingDelay"].ToString();
+					txtPostingTotal.Text = dsDashboard.Tables[0].Rows[0]["TotPosting"].ToString();
+					txtPostingOntime.Text = dsDashboard.Tables[0].Rows[0]["PostingOntime"].ToString();
+					txtPostingDelay.Text = dsDashboard.Tables[0].Rows[0]["PostingDelay"].ToString();
+                    txtClosingTotal.Text = dsDashboard.Tables[0].Rows[0]["TotClosing"].ToString();
+					txtClosingOntime.Text = dsDashboard.Tables[0].Rows[0]["ClosingOntime"].ToString();
+					txtClosingDelay.Text = dsDashboard.Tables[0].Rows[0]["ClosingDelay"].ToString();
+					txtAllocationTotal.Text = dsDashboard.Tables[0].Rows[0]["TotAllocation"].ToString();
+				}
+			}
+			catch (Exception ex)
+			{
+				DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
+				ErrorTracking.SaveError(_user.EmployeeId, this.GetType().FullName.Replace("ASP.", "").Replace("_", "."), System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
+
+			}
+		}
+		protected void LoadDashboardData()
         {
             try
             {
