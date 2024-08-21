@@ -6,7 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-
         <ContentTemplate>
 
             <asp:HiddenField runat="server" ID="hfCategoryId" />
@@ -316,35 +315,32 @@
 
             </div>
             </div>
-
-
-
-         
-            
             
             <%--Account Information--%>
             <div runat="server" id="divAccountInfo" class="panel panel-info" style="margin-top: 15px">
                 <div class="panel-header">Accounts Information</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-1">Voucher No.</div>
+                        <div class="col-1">Payable Voucher No.</div>
                         <div class="col-2">
                             <asp:TextBox runat="server" ID="txtVoucherNo" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
-                        <div class="col-1">Voucher Date</div>
+                        <div class="col-1">Payable Voucher Date</div>
                         <div class="col-2">
                             <asp:TextBox runat="server" ID="txtVoucherDate" CssClass="TextBoxStyle"></asp:TextBox>
                             <asp:CalendarExtender ID="CalExtVoucherDate" runat="server" CssClass="CalenderTheme"
                                 PopupButtonID="txtVoucherDate" TargetControlID="txtVoucherDate" Format="dd-MMM-yyyy">
                             </asp:CalendarExtender>
                         </div>
-                        <div class="col-1">Payment Amount</div>
-                        <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtPaymentAmount" CssClass="TextBoxStyle"></asp:TextBox>
-                        </div>
-                        <div class="col-"></div>
-                        <div class="col-2">
-                            <asp:CheckBox runat="server" ID="cbBillClosed" Text="Bill Close" Enabled="false" CssClass="CheckBoxStyle" />
+                        <div  runat="server" ID="PaymentAmountDiv">
+                            <div class="col-1" >Payment Amount</div>
+                            <div class="col-2">
+                                <asp:TextBox runat="server" ID="txtPaymentAmount" CssClass="TextBoxStyle"></asp:TextBox>
+                            </div>
+                            <div class="col-"></div>
+                            <div class="col-2">
+                                <asp:CheckBox runat="server" ID="cbBillClosed" Text="Bill Close" Enabled="false" CssClass="CheckBoxStyle" />
+                            </div>
                         </div>
                     </div>
                 </div>

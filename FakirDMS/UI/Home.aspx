@@ -175,7 +175,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="header-style">
-                        Own Document
+                        Own Document (<asp:Label ID="lblOwnDocCount" runat="server" Text="0"></asp:Label>)
                     </div>
                     <div style="overflow-x: auto">
                         <asp:GridView ID="gvOwnDocuments" runat="server"
@@ -206,7 +206,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="header-style">
-                        Workflow Document
+                        Workflow Document (<asp:Label ID="lblWorkFlowDocCount" runat="server" Text="0"></asp:Label>)
                     </div>
                     <div style="overflow-x: auto">
                         <asp:GridView ID="gvWorkflowDocument" runat="server"

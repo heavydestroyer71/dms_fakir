@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CoreLibrary;
+using FokirDMS;
 
 
 namespace FakirDMS.UI
@@ -22,6 +23,7 @@ namespace FakirDMS.UI
 		Cookie mrr = new Cookie();
 		String _errorMessage = String.Empty;
         DataManager _dataManager = new DataManager();
+        int user_role = 0;
 
               
 
@@ -58,6 +60,7 @@ namespace FakirDMS.UI
 
             if (!Page.IsPostBack)
             {
+                user_role = _user.GetCookie(CookieKey.UserId.ToString()).ToInt();
                 this.Form.DefaultButton = btnDefault.UniqueID;
                 txtEntryDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
                 divButtonApprove.Visible = false;
@@ -90,6 +93,15 @@ namespace FakirDMS.UI
 
                 BindGridViewDocumentDetails();
                 ControlVisibility();
+
+                if(user_role > 6)
+                {
+					btnLoadMrrListAPI.Visible = false;
+					btnLoadMrrListMCD.Visible = false;
+					PaymentAmountDiv.Visible = false;
+                    txtVoucherNo.ReadOnly = true;
+					txtVoucherDate.ReadOnly = true;
+				}
             }
         }
 
@@ -1027,30 +1039,64 @@ namespace FakirDMS.UI
         {
             try
             {
+				
                 if (CheckSaveValidation() && CheckforRemarks())
                 {
-                    Boolean isSuccess = UpdateDocumentInformation("F");
-                    if (hfIsApprover.Value == "1")
-                    {
+					if (_user.GetCookie(CookieKey.RoleId.ToString()) == "8")
+					{
+						_dataManager = new DataManager();
+						SqlParameter[] parameters = new SqlParameter[3]
+						{
+					_dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value),
+					_dataManager.MakeInParam("@Remarks", SqlDbType.NVarChar, 500, txtRemarksBoss.Text),
+					_dataManager.MakeInParam("@ClosedBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
+						};
 
-                        String sApproveFolder = ConfigurationManager.AppSettings["ApproveFolder"].ToString();
+						DataTable _dtReturn = _dataManager.GetDataTable("SP_SYS_DOCUMENT_CLOSE_ACCOUNTS", parameters);
+						if (hfIsApprover.Value == "1")
+						{
 
-                        String sApprovetWatermark = Server.MapPath("~/" + sApproveFolder + "/approve.png");
+							String sApproveFolder = ConfigurationManager.AppSettings["ApproveFolder"].ToString();
 
-                        GenerateWatermark generate = new GenerateWatermark();
-                        generate.AsApprove(hfDocumentId.Value, sApprovetWatermark);
+							String sApprovetWatermark = Server.MapPath("~/" + sApproveFolder + "/approve.png");
+
+							GenerateWatermark generate = new GenerateWatermark();
+							generate.AsApprove(hfDocumentId.Value, sApprovetWatermark);
+						}
+						if (_dtReturn.Rows.Count > 0)
+                        {
+							Boolean isSuccess = Convert.ToBoolean(_dtReturn.Rows[0]["IsSuccess"].ToString());
+							DisplayMessage(_dtReturn.Rows[0]["Message"].ToString());
+						}
+						Response.Redirect("~/UI/Home.aspx", false);
+					}
+
+					else
+					{
+						Boolean isSuccess = UpdateDocumentInformation("F");
+                        if (hfIsApprover.Value == "1")
+                        {
+
+                            String sApproveFolder = ConfigurationManager.AppSettings["ApproveFolder"].ToString();
+
+                            String sApprovetWatermark = Server.MapPath("~/" + sApproveFolder + "/approve.png");
+
+                            GenerateWatermark generate = new GenerateWatermark();
+                            generate.AsApprove(hfDocumentId.Value, sApprovetWatermark);
+                        }
+
+                        if (isSuccess)
+                        {
+                            Response.Redirect("~/UI/Dashborad.aspx", false);
+                        }
                     }
-
-                    if (isSuccess)
-                    {
-                        Response.Redirect("~/UI/Dashborad.aspx", false);
-                    }
+                    
                 }
-                else
-                {
-                    DisplayMessage(_errorMessage);
-                }
-            }
+				else
+				{
+					DisplayMessage(_errorMessage);
+				}
+			}
             catch (Exception ex)
             {
                 DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);

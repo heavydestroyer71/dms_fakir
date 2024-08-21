@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FokirDMS;
 
 namespace FakirDMS
 {
@@ -17,8 +18,12 @@ namespace FakirDMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            #region Check User Login Status
-            if (String.IsNullOrEmpty(_user.GetCookie(CookieKey.UserId.ToString())) || _user.GetCookie(CookieKey.UserId.ToString()) == "0")
+			#region Check User Login Status
+            if (_user.GetCookie(CookieKey.RoleId.ToString())== "7")
+			{
+				Response.Redirect(String.Format("~/UI/PaymentConfirm.aspx", false));
+			}
+			if (String.IsNullOrEmpty(_user.GetCookie(CookieKey.UserId.ToString())) || _user.GetCookie(CookieKey.UserId.ToString()) == "0")
             {
                 Response.Redirect(String.Format("~/Default.aspx", false));
             }
@@ -40,6 +45,12 @@ namespace FakirDMS
 					dashboard_total.Visible = true;
 					dashboard_status.Visible = false;
 				}
+				else if (_user.GetCookie(CookieKey.RoleId.ToString()) == "8")
+				{
+					dashboard_all.Visible = false;
+					dashboard_total.Visible = false;
+					dashboard_status.Visible = false;
+				}
 
 			}
         }
@@ -56,9 +67,9 @@ namespace FakirDMS
 
 				if (dsDashboard.Tables[0].Rows.Count > 0)
 				{
-					txtParkingTotal.Text = dsDashboard.Tables[0].Rows[0]["TotParking"].ToString();
-					txtParkingOntime.Text = dsDashboard.Tables[0].Rows[0]["ParkingOntime"].ToString();
-					txtParkingDelay.Text = dsDashboard.Tables[0].Rows[0]["ParkingDelay"].ToString();
+                    txtParkingTotal.Text = dsDashboard.Tables[0].Rows[0]["TotParking"].ToString();
+                    txtParkingOntime.Text = dsDashboard.Tables[0].Rows[0]["ParkingOntime"].ToString();
+                    txtParkingDelay.Text = dsDashboard.Tables[0].Rows[0]["ParkingDelay"].ToString();
 					txtPostingTotal.Text = dsDashboard.Tables[0].Rows[0]["TotPosting"].ToString();
 					txtPostingOntime.Text = dsDashboard.Tables[0].Rows[0]["PostingOntime"].ToString();
 					txtPostingDelay.Text = dsDashboard.Tables[0].Rows[0]["PostingDelay"].ToString();
@@ -80,11 +91,30 @@ namespace FakirDMS
             try
             {
                 _dataManager = new DataManager();
-                SqlParameter[] parameters = new SqlParameter[1]
+                
+
+                string user_flow = _user.GetCookie(CookieKey.RoleId.ToString());
+
+                DataSet dsDashboard = new DataSet();
+
+				if (user_flow == "7" || user_flow == "8")
                 {
-                        _dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
-                };
-                DataSet dsDashboard = _dataManager.GetDataSet("SP_SYS_DASHBOARD", parameters);
+					SqlParameter[] parameters = new SqlParameter[2]
+				{
+						_dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
+						_dataManager.MakeInParam("@FlowId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.RoleId.ToString()))
+				};
+					dsDashboard = _dataManager.GetDataSet("SP_SYS_DASHBOARD_ACCOUNTS", parameters);
+				}
+                else
+                {
+					SqlParameter[] parameters = new SqlParameter[1]
+				{
+                    _dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
+				};
+					dsDashboard = _dataManager.GetDataSet("SP_SYS_DASHBOARD", parameters);
+				}
+				
 
                 if (dsDashboard.Tables[0].Rows.Count > 0)
                 {
@@ -106,7 +136,8 @@ namespace FakirDMS
 
                 if(dsDashboard.Tables[2].Rows.Count > 0)
                 {
-                    FillList.PopulateGridView(dsDashboard.Tables[2], gvOwnDocuments);
+                    lblOwnDocCount.Text = dsDashboard.Tables[2].Rows.Count.ToString();
+					FillList.PopulateGridView(dsDashboard.Tables[2], gvOwnDocuments);
                 }
                 else
                 {
@@ -116,6 +147,7 @@ namespace FakirDMS
 
                 if (dsDashboard.Tables[3].Rows.Count > 0)
                 {
+                    lblWorkFlowDocCount.Text = dsDashboard.Tables[3].Rows.Count.ToString();
                     FillList.PopulateGridView(dsDashboard.Tables[3], gvWorkflowDocument);
                 }
                 else

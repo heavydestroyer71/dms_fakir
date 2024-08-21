@@ -190,6 +190,7 @@
     <Content Include="UI\DocumentStore.aspx" />
     <Content Include="UI\PrintPreviewScm.aspx" />
     <Content Include="UI\Reports\BillReceiveSlip.aspx" />
+    <Content Include="UI\PaymentConfirm.aspx" />
     <Content Include="UI\TaskAssign.aspx" />
     <Content Include="UI\StoreSetup.aspx" />
     <Content Include="UI\Lookup.aspx" />
@@ -249,6 +250,7 @@
       <DependentUpon>AutoServices.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -293,6 +295,13 @@
     </Compile>
     <Compile Include="UI\Reports\BillReceiveSlip.aspx.designer.cs">
       <DependentUpon>BillReceiveSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PaymentConfirm.aspx.cs">
+      <DependentUpon>PaymentConfirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\PaymentConfirm.aspx.designer.cs">
+      <DependentUpon>PaymentConfirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\TaskAssign.aspx.cs">
       <DependentUpon>TaskAssign.aspx</DependentUpon>

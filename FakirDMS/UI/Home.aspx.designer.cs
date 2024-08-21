@@ -213,6 +213,15 @@ namespace FakirDMS
 		protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
 		/// <summary>
+		/// lblOwnDocCount control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblOwnDocCount;
+
+		/// <summary>
 		/// gvOwnDocuments control.
 		/// </summary>
 		/// <remarks>
@@ -220,6 +229,15 @@ namespace FakirDMS
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.GridView gvOwnDocuments;
+
+		/// <summary>
+		/// lblWorkFlowDocCount control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblWorkFlowDocCount;
 
 		/// <summary>
 		/// gvWorkflowDocument control.

@@ -187,6 +187,8 @@
                             <asp:BoundField DataField="BillAmount" HeaderText="Bill Amount" ItemStyle-HorizontalAlign="Right" />
                             <asp:BoundField DataField="Assignee" HeaderText="Assignee" />
                             <asp:BoundField DataField="Status" HeaderText="Status" />
+                            <asp:BoundField DataField="CurrentUser" HeaderText="User" />
+                            <asp:BoundField DataField="RoleName" HeaderText="Flow Name" />
                             <asp:BoundField DataField="EntryDate" HeaderText="Entry Date" HeaderStyle-Width="95px" />
                             <asp:BoundField DataField="LastModified" HeaderText="Last Update" HeaderStyle-Width="95px" />
                             <asp:BoundField DataField="Waiting" HeaderText="Waiting" HeaderStyle-Width="80px" />
