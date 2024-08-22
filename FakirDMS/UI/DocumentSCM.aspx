@@ -323,25 +323,22 @@
                     <div class="row">
                         <div class="col-1">Payable Voucher No.</div>
                         <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtVoucherNo" CssClass="TextBoxStyle"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtVoucherNo" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
                         <div class="col-1">Payable Voucher Date</div>
                         <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtVoucherDate" CssClass="TextBoxStyle"></asp:TextBox>
-                            <asp:CalendarExtender ID="CalExtVoucherDate" runat="server" CssClass="CalenderTheme"
-                                PopupButtonID="txtVoucherDate" TargetControlID="txtVoucherDate" Format="dd-MMM-yyyy">
-                            </asp:CalendarExtender>
+                            <asp:TextBox runat="server" ID="txtVoucherDate" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
-                        <div  runat="server" ID="PaymentAmountDiv">
-                            <div class="col-1" >Payment Amount</div>
-                            <div class="col-2">
-                                <asp:TextBox runat="server" ID="txtPaymentAmount" CssClass="TextBoxStyle"></asp:TextBox>
-                            </div>
-                            <div class="col-"></div>
-                            <div class="col-2">
-                                <asp:CheckBox runat="server" ID="cbBillClosed" Text="Bill Close" Enabled="false" CssClass="CheckBoxStyle" />
-                            </div>
+                        <div runat="server" ID ="PaymentAmountDiv">
+                        <div class="col-1">Payment Amount</div>
+                        <div class="col-2">
+                            <asp:TextBox runat="server" ID="txtPaymentAmount" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
+                        </div>
+                        <%--<div class="col-"></div>
+                        <div class="col-2">
+                            <asp:CheckBox runat="server" ID="cbBillClosed" Text="Bill Close" Enabled="False" CssClass="CheckBoxStyle" />
+                        </div>--%>
                     </div>
                 </div>
             </div>

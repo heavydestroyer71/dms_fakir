@@ -953,7 +953,7 @@ namespace FakirDMS.UI
                     _dataManager.MakeInParam("@VoucherDate", SqlDbType.NVarChar, 500, sVoucherDate),
                     _dataManager.MakeInParam("@PaymentAmount", SqlDbType.NVarChar, 500, txtPaymentAmount.Text),
                     _dataManager.MakeInParam("@Status", SqlDbType.NVarChar, 500,"0"),
-                    _dataManager.MakeInParam("@IsClosed", SqlDbType.NVarChar, 500, cbBillClosed.Checked),
+                    _dataManager.MakeInParam("@IsClosed", SqlDbType.NVarChar, 500, /*cbBillClosed.Checked*/ 0),
 
                     _dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
                     _dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, sAction)

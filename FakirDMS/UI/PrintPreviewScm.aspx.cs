@@ -67,7 +67,7 @@ namespace FakirDMS.UI
                     txtVoucherNo.Text = ds.Tables[0].Rows[0]["VoucherNo"].ToString();
                     txtVoucherDate.Text = ds.Tables[0].Rows[0]["VoucherDate"].ToString();
                     txtPaymentAmount.Text = ds.Tables[0].Rows[0]["PaymentAmount"].ToString();
-                    cbBillClosed.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["IsClosed"].ToString());
+                    //cbBillClosed.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["IsClosed"].ToString());
 
 
                     txtBillDate.Text = ds.Tables[0].Rows[0]["PartyBillDate"].ToString();
