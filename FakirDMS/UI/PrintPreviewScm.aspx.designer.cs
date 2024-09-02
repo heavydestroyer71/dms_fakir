@@ -222,13 +222,31 @@ namespace FakirDMS.UI
 		protected global::System.Web.UI.WebControls.TextBox txtVoucherDate;
 
 		/// <summary>
-		/// txtPaymentAmount control.
+		/// secPayable control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtPaymentAmount;
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl secPayable;
+
+		/// <summary>
+		/// txtPaymentVoucherNo control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtPaymentVoucherNo;
+
+		/// <summary>
+		/// txtPaymentVoucherDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtPaymentVoucherDate;
 
 		/// <summary>
 		/// gvComment control.

@@ -60,7 +60,7 @@ namespace FakirDMS.UI
 
             if (!Page.IsPostBack)
             {
-                user_role = _user.GetCookie(CookieKey.UserId.ToString()).ToInt();
+                user_role = _user.GetCookie(CookieKey.RoleId.ToString()).ToInt();
                 this.Form.DefaultButton = btnDefault.UniqueID;
                 txtEntryDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
                 divButtonApprove.Visible = false;
@@ -77,12 +77,12 @@ namespace FakirDMS.UI
                 LoadDropDownListExpense();
                 LoadDropDownListAttachmentType();
                 BindGridPoList();
+                BindDropDownListRoom();
+
+				//BingGridViewDocumentList();
 
 
-                //BingGridViewDocumentList();
-
-
-                if (!String.IsNullOrEmpty(Request.QueryString["DocumentID"]))
+				if (!String.IsNullOrEmpty(Request.QueryString["DocumentID"]))
                 {
                     hfDocumentId.Value = Request.QueryString["DocumentID"];
                     LoadDocumentForUpdate();
@@ -93,15 +93,32 @@ namespace FakirDMS.UI
 
                 BindGridViewDocumentDetails();
                 ControlVisibility();
+				divStoreLocation.Visible = false;
 
-                if(user_role > 6)
+				if (user_role == 4)
+                {
+					btnLoadMrrListAPI.Visible = true;
+					btnLoadMrrListMCD.Visible = true;
+					//txtPaymentVoucherNo.ReadOnly = true;
+				}
+                else
                 {
 					btnLoadMrrListAPI.Visible = false;
 					btnLoadMrrListMCD.Visible = false;
-					PaymentAmountDiv.Visible = false;
-                    txtVoucherNo.ReadOnly = true;
-					txtVoucherDate.ReadOnly = true;
+					txtPaymentVoucherNo.ReadOnly = true;
 				}
+
+				if (user_role > 6)
+                {
+					txtVoucherNo.ReadOnly = true;
+					txtVoucherDate.ReadOnly = true;
+                    txtPaymentVoucherNo.ReadOnly=true;
+                    txtPaymentVoucherDate.ReadOnly=true;
+				}
+                if (user_role == 8)
+                {
+                    divStoreLocation.Visible = true;
+                }
             }
         }
 
@@ -222,12 +239,31 @@ namespace FakirDMS.UI
             //glbShowPoPopup.Visible= false;
         }
 
-        #endregion
+		#endregion
 
 
-        #region Control Bind With Data from Database
+		#region Control Bind With Data from Database
+		protected void BindDropDownListRoom()
+		{
+			try
+			{
+				DataTable _dtRoom = PopulateLists.GetRooms();
+				FillList.PopulateDropDownList(_dtRoom, box_ddlRoomName, "Select Room");
 
-        protected void LoadDropDownListCompany()
+				_dtRoom = PopulateLists.GetRackWiseShelf(box_ddlRackName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlRackName, "Select Rack");
+				_dtRoom = PopulateLists.GetRackWiseShelf(box_ddlRackName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlShelfName, "Select Shelf");
+				_dtRoom = PopulateLists.GetShelfWiseBox(box_ddlShelfName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlBoxfName, "Select Box");
+			}
+			catch (Exception ex)
+			{
+				DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
+				ErrorTracking.SaveError(_user.EmployeeId, this.GetType().FullName.Replace("ASP.", "").Replace("_", "."), System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
+			}
+		}
+		protected void LoadDropDownListCompany()
         {
             String sUserId = _user.GetCookie(CookieKey.UserId.ToString());
             String sCategoryId = hfCategoryId.Value;
@@ -337,8 +373,10 @@ namespace FakirDMS.UI
 
                     txtVoucherNo.Text = ds.Tables[0].Rows[0]["VoucherNo"].ToString();
                     txtVoucherDate.Text = ds.Tables[0].Rows[0]["VoucherDate"].ToString();
-                    txtPaymentAmount.Text = ds.Tables[0].Rows[0]["PaymentAmount"].ToString();
-                }
+					txtPaymentVoucherNo.Text = ds.Tables[0].Rows[0]["PaymentVoucherNo"].ToString();
+					txtPaymentVoucherDate.Text = ds.Tables[0].Rows[0]["PaymentVoucherDate"].ToString();
+					//txtPaymentAmount.Text = ds.Tables[0].Rows[0]["PaymentAmount"].ToString();
+				}
 
                 FillList.PopulateGridView(ds.Tables[1], gvComment); //DocumentComments
                 FillList.PopulateGridView(ds.Tables[2], gvAttachment); //Document
@@ -351,12 +389,63 @@ namespace FakirDMS.UI
             }
         }
 
-        #endregion
+		#endregion
+		#region DropDownList Selected Index Changed
+		protected void box_ddlRackName_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				DataTable _dtRoom = PopulateLists.GetRackWiseShelf(box_ddlRackName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlShelfName, "Select Shelf");
 
+				_dtRoom = PopulateLists.GetShelfWiseBox(box_ddlShelfName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlBoxfName, "Select Box");
+			}
+			catch (Exception ex)
+			{
+				DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
+				ErrorTracking.SaveError(_user.EmployeeId, this.GetType().FullName.Replace("ASP.", "").Replace("_", "."), System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
+			}
+		}
 
-        #region Attachment GridView Related
+		protected void box_ddlRoomName_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				DataTable _dtRoom = PopulateLists.GetRoomWiseRack(box_ddlRoomName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlRackName, "Select Rack");
+				_dtRoom = PopulateLists.GetRackWiseShelf(box_ddlRackName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlShelfName, "Select Shelf");
+				_dtRoom = PopulateLists.GetShelfWiseBox(box_ddlShelfName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlBoxfName, "Select Box");
+				
+			}
+			catch (Exception ex)
+			{
+				DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
+				ErrorTracking.SaveError(_user.EmployeeId, this.GetType().FullName.Replace("ASP.", "").Replace("_", "."), System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
+			}
+		}
 
-        protected void gBtnPreview_Click(object sender, EventArgs e)
+		protected void box_ddlShelfName_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				DataTable _dtRoom = PopulateLists.GetShelfWiseBox(box_ddlShelfName.SelectedValue);
+				FillList.PopulateDropDownList(_dtRoom, box_ddlBoxfName, "Select Box");
+			}
+			catch (Exception ex)
+			{
+				DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
+				ErrorTracking.SaveError(_user.EmployeeId, this.GetType().FullName.Replace("ASP.", "").Replace("_", "."), System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
+			}
+		}
+
+		#endregion
+
+		#region Attachment GridView Related
+
+		protected void gBtnPreview_Click(object sender, EventArgs e)
         {
             LinkButton imDownload = (LinkButton)sender;
             GridViewRow row = ((GridViewRow)imDownload.Parent.Parent);
@@ -923,7 +1012,7 @@ namespace FakirDMS.UI
                 { sVoucherDate = txtVoucherDate.Text; }
 
                     _dataManager = new DataManager();
-                SqlParameter[] parameters = new SqlParameter[26]
+                SqlParameter[] parameters = new SqlParameter[25]
                 {
                     _dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value),
                      _dataManager.MakeInParam("@BillRefNo", SqlDbType.NVarChar, 500, txtBillRefNo.Text),
@@ -951,7 +1040,7 @@ namespace FakirDMS.UI
 
                     _dataManager.MakeInParam("@VoucherNo", SqlDbType.NVarChar, 500, txtVoucherNo.Text),
                     _dataManager.MakeInParam("@VoucherDate", SqlDbType.NVarChar, 500, sVoucherDate),
-                    _dataManager.MakeInParam("@PaymentAmount", SqlDbType.NVarChar, 500, txtPaymentAmount.Text),
+                    //_dataManager.MakeInParam("@PaymentAmount", SqlDbType.NVarChar, 500, txtPaymentAmount.Text),
                     _dataManager.MakeInParam("@Status", SqlDbType.NVarChar, 500,"0"),
                     _dataManager.MakeInParam("@IsClosed", SqlDbType.NVarChar, 500, /*cbBillClosed.Checked*/ 0),
 
@@ -1037,7 +1126,12 @@ namespace FakirDMS.UI
 
         protected void btnWorkflowForward_Click(object sender, EventArgs e)
         {
-            try
+            if(box_ddlBoxfName.SelectedValue == "0" && user_role == 8)
+            {
+                DisplayMessage("Enter Store Information Properly");
+                return;
+            }
+			try
             {
 				
                 if (CheckSaveValidation() && CheckforRemarks())
@@ -1045,11 +1139,15 @@ namespace FakirDMS.UI
 					if (_user.GetCookie(CookieKey.RoleId.ToString()) == "8")
 					{
 						_dataManager = new DataManager();
-						SqlParameter[] parameters = new SqlParameter[3]
+						SqlParameter[] parameters = new SqlParameter[7]
 						{
-					_dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value),
-					_dataManager.MakeInParam("@Remarks", SqlDbType.NVarChar, 500, txtRemarksBoss.Text),
-					_dataManager.MakeInParam("@ClosedBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
+					        _dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value),
+					        _dataManager.MakeInParam("@Remarks", SqlDbType.NVarChar, 500, txtRemarksBoss.Text),
+							_dataManager.MakeInParam("@roomId", SqlDbType.NVarChar, 500, box_ddlRoomName.SelectedValue),
+							_dataManager.MakeInParam("@rackId", SqlDbType.NVarChar, 500, box_ddlRackName.SelectedValue),
+							_dataManager.MakeInParam("@shelfId", SqlDbType.NVarChar, 500, box_ddlShelfName.SelectedValue),
+							_dataManager.MakeInParam("@boxId", SqlDbType.NVarChar, 500, box_ddlBoxfName.SelectedValue),
+							_dataManager.MakeInParam("@ClosedBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
 						};
 
 						DataTable _dtReturn = _dataManager.GetDataTable("SP_SYS_DOCUMENT_CLOSE_ACCOUNTS", parameters);
@@ -2383,5 +2481,6 @@ namespace FakirDMS.UI
             }
         }
 
-    }
+		
+	}
 }

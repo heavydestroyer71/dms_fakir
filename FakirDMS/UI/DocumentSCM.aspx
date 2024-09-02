@@ -6,6 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
         <ContentTemplate>
 
             <asp:HiddenField runat="server" ID="hfCategoryId" />
@@ -315,31 +316,42 @@
 
             </div>
             </div>
+
+
+
+         
+            
             
             <%--Account Information--%>
             <div runat="server" id="divAccountInfo" class="panel panel-info" style="margin-top: 15px">
                 <div class="panel-header">Accounts Information</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-1">Payable Voucher No.</div>
+                        <div class="col-2">Payable Voucher No.</div>
                         <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtVoucherNo" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtVoucherNo" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
-                        <div class="col-1">Payable Voucher Date</div>
+                        <div class="col-2">Payable Voucher Date</div>
                         <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtVoucherDate" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtVoucherDate" CssClass="TextBoxStyle"></asp:TextBox>
+                            <asp:CalendarExtender ID="CalExtVoucherDate" runat="server" CssClass="CalenderTheme"
+                                PopupButtonID="txtVoucherDate" TargetControlID="txtVoucherDate" Format="dd-MMM-yyyy">
+                            </asp:CalendarExtender>
                         </div>
-                        <div runat="server" ID ="PaymentAmountDiv">
-                        <div class="col-1">Payment Amount</div>
-                        <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtPaymentAmount" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
-                        </div>
-                        </div>
-                        <%--<div class="col-"></div>
-                        <div class="col-2">
-                            <asp:CheckBox runat="server" ID="cbBillClosed" Text="Bill Close" Enabled="False" CssClass="CheckBoxStyle" />
-                        </div>--%>
                     </div>
+                     <div class="row">
+                         <div class="col-2">Payment Voucher No.</div>
+                         <div class="col-2">
+                             <asp:TextBox runat="server" ID="txtPaymentVoucherNo" CssClass="TextBoxStyle"></asp:TextBox>
+                         </div>
+                         <div class="col-2">Payment Voucher Date</div>
+                         <div class="col-2">
+                             <asp:TextBox runat="server" ID="txtPaymentVoucherDate" CssClass="TextBoxStyle"></asp:TextBox>
+                             <asp:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="CalenderTheme"
+                                 PopupButtonID="txtPaymentVoucherDate" TargetControlID="txtPaymentVoucherDate" Format="dd-MMM-yyyy">
+                             </asp:CalendarExtender>
+                         </div>
+                     </div>
                 </div>
             </div>
 
@@ -368,7 +380,46 @@
                     </div>
                 </div>
             </div>
-
+            <div runat="server" id="divStoreLocation" class="panel panel-info">
+                <div class="panel-header">Store Location</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                            Room Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:DropDownList runat="server" ID="box_ddlRoomName" OnSelectedIndexChanged="box_ddlRoomName_SelectedIndexChanged" AutoPostBack="true" CssClass="DropDownListStyle"></asp:DropDownList>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            Rack Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:DropDownList runat="server" ID="box_ddlRackName" OnSelectedIndexChanged="box_ddlRackName_SelectedIndexChanged" AutoPostBack="true" CssClass="DropDownListStyle"></asp:DropDownList>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            Shelf Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:DropDownList runat="server" ID="box_ddlShelfName" CssClass="DropDownListStyle" OnSelectedIndexChanged="box_ddlShelfName_SelectedIndexChanged"  AutoPostBack="true" ></asp:DropDownList>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            Box Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:DropDownList ID="box_ddlBoxfName" runat="server" CssClass="DropDownListStyle" ></asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                    </div>
+                    <div class="row">
+                        
+                    </div>
+                    <div class="row">
+                        
+                    </div>
+                </div>
+            </div>
             <%--Raise User Button Panel--%>
             <div style="margin-top: 15px"></div>
             <div runat="server" id="divButtonPrepare" class="panel panel-info">

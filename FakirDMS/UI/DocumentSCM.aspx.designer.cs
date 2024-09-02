@@ -339,22 +339,40 @@ namespace FakirDMS.UI
 		protected global::System.Web.UI.WebControls.TextBox txtVoucherDate;
 
 		/// <summary>
-		/// PaymentAmountDiv control.
+		/// CalExtVoucherDate control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaymentAmountDiv;
+		protected global::AjaxControlToolkit.CalendarExtender CalExtVoucherDate;
 
 		/// <summary>
-		/// txtPaymentAmount control.
+		/// txtPaymentVoucherNo control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtPaymentAmount;
+		protected global::System.Web.UI.WebControls.TextBox txtPaymentVoucherNo;
+
+		/// <summary>
+		/// txtPaymentVoucherDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtPaymentVoucherDate;
+
+		/// <summary>
+		/// CalendarExtender1 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
 		/// <summary>
 		/// divUploader control.
@@ -400,6 +418,51 @@ namespace FakirDMS.UI
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button btnUploadDocument;
+
+		/// <summary>
+		/// divStoreLocation control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStoreLocation;
+
+		/// <summary>
+		/// box_ddlRoomName control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList box_ddlRoomName;
+
+		/// <summary>
+		/// box_ddlRackName control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList box_ddlRackName;
+
+		/// <summary>
+		/// box_ddlShelfName control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList box_ddlShelfName;
+
+		/// <summary>
+		/// box_ddlBoxfName control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList box_ddlBoxfName;
 
 		/// <summary>
 		/// divButtonPrepare control.

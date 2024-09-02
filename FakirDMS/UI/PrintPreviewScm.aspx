@@ -184,22 +184,28 @@
                 <div class="panel-header">Accounts Information</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-1">Payable Voucher No.</div>
-                        <div class="col-2">
+                        <div class="col-2">Payable Voucher No.</div>
+                        <div class="col-3">
                             <asp:TextBox runat="server" ID="txtVoucherNo" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
-                        <div class="col-1">Payable Voucher Date</div>
-                        <div class="col-2">
+                        <div class="col-2">Payable Voucher Date</div>
+                        <div class="col-3">
                             <asp:TextBox runat="server" ID="txtVoucherDate" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
-                        </div>
-                        <div class="col-1">Payment Amount</div>
-                        <div class="col-2">
-                            <asp:TextBox runat="server" ID="txtPaymentAmount" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
                         </div>
                         <%--<div class="col-"></div>
                         <div class="col-2">
                             <asp:CheckBox runat="server" ID="cbBillClosed" Text="Bill Close" Enabled="False" CssClass="CheckBoxStyle" />
                         </div>--%>
+                    </div>
+                    <div class="row" runat="server" ID="secPayable">
+                        <div class="col-2">Payment Voucher No.</div>
+                        <div class="col-3">
+                            <asp:TextBox runat="server" ID="txtPaymentVoucherNo" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                        </div>
+                        <div class="col-2">Payment Voucher Date</div>
+                        <div class="col-3">
+                            <asp:TextBox runat="server" ID="txtPaymentVoucherDate" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
             </div>
