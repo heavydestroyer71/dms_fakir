@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
 using CoreLibrary;
+using DocumentFormat.OpenXml.Office2010.Word;
+using FakirDMS.UI;
 
 namespace FakirDMS
 {
-    public partial class Default : System.Web.UI.Page
+    public  partial class Default : System.Web.UI.Page
     {
         Cookie userCookie = new Cookie();
         DataManager _dataManager = new DataManager();
@@ -14,14 +17,55 @@ namespace FakirDMS
         {
             if (!IsPostBack)
             {
-               
-                Session["UserInfo"] = null;
+				//UpdateCategorybyWo();
+				 Session["UserInfo"] = null;
 
                 String passwordString= UtilityClass.Decrypt("/KHS6ykGutM=", true);
             }
         }
+		//UpdateCategorybyWo using to fetch category data through an API and insert into a table. So we can cross join to update the category in DocumentInfo
+		protected async void UpdateCategorybyWo()
+		{
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+			_dataManager = new DataManager();
+			SqlParameter[] parameters = new SqlParameter[0]
+			{
+
+			};
+
+			DataTable dtDocuments = _dataManager.GetDataTable("temp_GetAllWO", parameters);
+			DataTable dtResult;
+			List<WOs> documentList = new List<WOs>();
+			foreach (DataRow row in dtDocuments.Rows)
+			{
+				int documentId = Convert.ToInt32(row["DocumentId"]);  // Fetches the DocumentId
+				dtResult = await ApiClient.getCategoryByWO(row["RefNo"].ToString());
+				foreach (DataRow r in dtResult.Rows)
+				{
+					string CategoryId = r["CATEGORY_ID"].ToString().Replace("&nbsp;", "");
+					//string sQuery = String.Format("insert into tempRefCat(DocumentId, RefNo, CategoryId) values({ 0},{ 1} , { 2})", Convert.ToInt32(row["DocumentId"]), row["RefNo"].ToString(), CategoryId);
+                    if(CategoryId=="0")
+                    {
+
+                    }
+					string sQuery = String.Format("insert into tempRefCat(DocumentId, RefNo, CategoryId) values({0},'{1}',{2})", documentId, row["RefNo"].ToString(), r["CATEGORY_ID"].ToString());
+                    _dataManager.ExecuteNonQuery(sQuery);
+				}
+				//string sQuery = String.Format("insert into tempRefCat(DocumentId, RefNo, CategoryId) values({ 0},{ 1} , { 2})", Convert.ToInt32(row["DocumentId"]), row["RefNo"].ToString(), dtResult.Rows);
+			}
+		}
+        public class WOs
+        {
+			public int DocumentId { get; set; }
+			public string RefNo { get; set; }
+		}
+        public class WO_CAT
+        {
+            public string WO_NUMBER { get; set; }
+            public string CATEGORY_ID { get; set; }
+            public string ACTUAL_CATEGORY_NAME { get; set; }
+        }
+		protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {

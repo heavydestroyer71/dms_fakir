@@ -18,6 +18,7 @@ namespace FakirDMS.UI
         Cookie _user = new Cookie();
         String _validationMessage = String.Empty;
         DataManager _dataManager = new DataManager();
+        DataTable xl_data = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +52,7 @@ namespace FakirDMS.UI
                 LoadDropDownListCategory();
                 LoadDropDownListStatus();
 
-                BindGridViewWorkflowList("UI");
+                //BindGridViewWorkflowList("UI");
             }
         }
 
@@ -114,6 +115,7 @@ namespace FakirDMS.UI
                 };
 
                 DataTable dtDocuments = _dataManager.GetDataTable("SP_DOCUMENT_REPORT", parameters);
+                xl_data = dtDocuments;
 				Session["GridViewData"] = dtDocuments;
 				lblWorkflowCount.Text = dtDocuments.Rows.Count.ToString();
                 //if (DataModel == "UI")
@@ -158,60 +160,45 @@ namespace FakirDMS.UI
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            BindGridViewWorkflowList("XLS");
+			BindGridViewWorkflowList("UI");
 
-            string ExportFile = "BillStatusReport_"+System.DateTime.Now.ToString("dd/MM/yyyy").Replace("/","_")+".xls";
+			string ExportFile = "BillStatusReport_" + System.DateTime.Now.ToString("dd/MM/yyyy").Replace("/", "_") + ".xls";
 
-            StringWriter sw = new StringWriter();
+			StringWriter sw = new StringWriter();
 
-            string str = "<table cellspacing=@0@ rules=@all@ border=@1@ style=@border-collapse:collapse;@>".Replace("@", "\"");
-            sw.Write(str);
+			string str = "<table cellspacing=@0@ rules=@all@ border=@1@ style=@border-collapse:collapse;@>".Replace("@", "\"");
+			sw.Write(str);
 
-            sw.Write("<tr><td colspan=16 style=@font-weight: bold; align-content:center; font-size: 50px;@>".Replace("@", "\""));
+			sw.Write("<tr><td colspan=16 style=@font-weight: bold; align-content:center; font-size: 50px;@>".Replace("@", "\""));
 
-            sw.Write("Bill Status Report</td></tr></table>");
+			sw.Write("Bill Status Report</td></tr></table>");
 
-            // REport Date
+			// REport Date
 
-            str = "<table cellspacing=@0@ rules=@all@ border=@1@ style=@border-collapse:collapse;@>".Replace("@", "\"");
-            sw.Write(str);
+			str = "<table cellspacing=@0@ rules=@all@ border=@1@ style=@border-collapse:collapse;@>".Replace("@", "\"");
+			sw.Write(str);
 
-            sw.Write("<tr><td colspan=16 style=@font-weight: bold; align-content:center; font-size: 25px;@>".Replace("@", "\""));
+			sw.Write("<tr><td colspan=16 style=@font-weight: bold; align-content:center; font-size: 25px;@>".Replace("@", "\""));
 
-            string ReportDate = "From Date: " + txtFromDate.Text + " To Date: " + txtToDate.Text;
-            
-            sw.Write(ReportDate);
+			string ReportDate = "From Date: " + txtFromDate.Text + " To Date: " + txtToDate.Text;
 
-            sw.Write("</td></tr></table>");
+			sw.Write(ReportDate);
 
-            int i= gvWorkflowDocuments.Rows.Count;
-			DataTable allData = Session["GridViewData"] as DataTable;
-			//sw.Write(FillList.ExportToExcel(gvWorkflowDocuments, allData));
-			using (XLWorkbook workbook = new XLWorkbook())
-			{
-				var worksheet = workbook.Worksheets.Add("Data");
+			sw.Write("</td></tr></table>");
 
-				// Add DataTable data to worksheet
-				worksheet.Cell(1, 1).InsertTable(allData);
-
-				// Save the Excel file to MemoryStream
-				using (MemoryStream memoryStream = new MemoryStream())
-				{
-					workbook.SaveAs(memoryStream);
-					byte[] bytes = memoryStream.ToArray();
-
-					// Send the Excel file to the client
-					Response.Clear();
-					Response.Buffer = true;
-					Response.Charset = "";
-					Response.ContentType = "application/vnd.ms-excel";
-					Response.AddHeader("content-disposition","attachment;filename=" + ExportFile);
-					Response.BinaryWrite(bytes);
-					Response.Flush();
-					Response.End();
-				}
-			}
-        }
+			sw.Write(FillList.ExportToExcel(gvWorkflowDocuments));
+			Response.Clear();
+			Response.Buffer = true;
+			Response.AddHeader("content-disposition",
+			"attachment;filename=" + ExportFile);
+			Response.Charset = "";
+			Response.ContentType = "application/vnd.ms-excel";
+			string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+			Response.Write(style);
+			Response.Output.Write(sw.ToString());
+			Response.Flush();
+			Response.End();
+		}
         protected void btnReload_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/AllDocumentReport.aspx", false);

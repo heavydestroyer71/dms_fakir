@@ -52,8 +52,11 @@ namespace CoreLibrary
         {
             return await RequestDataTable(ApiEndpoint.LetterOfCreditInfo(CatgId, lcNo));
         }
-
-        public static async Task<DataTable> GetLetterOfCreditByPiId(String piId)
+		public static async Task<DataTable> getCategoryByWO(String wo)
+		{
+			return await RequestDataTable(ApiEndpoint.getCategoryByWO(wo));
+		}
+		public static async Task<DataTable> GetLetterOfCreditByPiId(String piId)
         {
             return await RequestDataTable(ApiEndpoint.LetterOfCreditByPiId(piId));
         }

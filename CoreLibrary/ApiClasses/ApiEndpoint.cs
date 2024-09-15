@@ -99,7 +99,15 @@ namespace CoreLibrary
             return sFullUrl;
 
         }
-        public static String MaterialReceiveByPoId(String PoId,String PiId)
+
+		public static String getCategoryByWO(String wo_order)
+		{
+			String url = "item_category_by_po_number/wo_number/";
+			String sFullUrl = sBaseUrl() + url + wo_order;
+			return sFullUrl;
+
+		}
+		public static String MaterialReceiveByPoId(String PoId,String PiId)
         {
             String sPoPart = "Mrr/mrr_no/0/parchase_order_ids/";
             String sPiPart = "/pi_ids/";
