@@ -24,6 +24,15 @@ namespace FakirDMS.UI
 		protected global::System.Web.UI.UpdatePanel uppdatePanel;
 
 		/// <summary>
+		/// searchPanel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl searchPanel;
+
+		/// <summary>
 		/// ddlCompany control.
 		/// </summary>
 		/// <remarks>
@@ -78,6 +87,15 @@ namespace FakirDMS.UI
 		protected global::System.Web.UI.WebControls.Button btnReload;
 
 		/// <summary>
+		/// txtTracking control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtTracking;
+
+		/// <summary>
 		/// lblWorkflowCount control.
 		/// </summary>
 		/// <remarks>
@@ -85,6 +103,15 @@ namespace FakirDMS.UI
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Label lblWorkflowCount;
+
+		/// <summary>
+		/// gridContainer control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridContainer;
 
 		/// <summary>
 		/// gvDocuments control.
@@ -184,6 +211,15 @@ namespace FakirDMS.UI
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Label lblSubmittedDocCount;
+
+		/// <summary>
+		/// gridContainer_submit control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridContainer_submit;
 
 		/// <summary>
 		/// gvDocumentsSubmitted control.

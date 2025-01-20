@@ -2719,7 +2719,7 @@ fieldset:disabled a.btn {
   background-color: #ffc107;
   border-color: #ffc107;
   box-shadow: none;
-    height: 20px;
+    /*height: 20px;*/
 }
 
 .btn-warning:hover {

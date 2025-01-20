@@ -2,7 +2,17 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server">
+    <style type="text/css">
+        #gridContainer table thead tr th {
+        position: sticky;
+        top: 0;
+        background-color: #f1f1f1;
+        z-index: 10;
+        border-bottom: 2px solid #ccc;
+    }
+    </style>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <asp:UpdatePanel runat="server" ID="uppdatePanel">
         <ContentTemplate>
@@ -51,11 +61,11 @@
                 </div>
             </div>
 
-            <div style="margin-top: 20px"></div>
             <div class="panel panel-info">
                 <div class="panel-header">Workflow Documents (<asp:Label ID="lblWorkflowCount" runat="server" Text="0"></asp:Label>)</div>
                 <div class="panel-body">
-                    <asp:GridView ID="gvWorkflowDocuments" runat="server"
+                    <div id="gridContainer" style="height: 400px; overflow-y: auto;">
+                        <asp:GridView ID="gvWorkflowDocuments" runat="server"
                         OnRowCommand="gvWorkflowDocuments_RowCommand"
                         OnPageIndexChanging="gvWorkflowDocuments_PageIndexChanging"
                         AutoGenerateColumns="false" AllowPaging="true" PageSize="10" Width="100%"
@@ -110,6 +120,7 @@
                         <PagerStyle CssClass="GridViewPagerStyle" />
                         <PagerSettings FirstPageText="First" NextPageText="Next" PreviousPageText="Prev" LastPageText="Last" Mode="NumericFirstLast" />
                     </asp:GridView>
+                    </div>
                 </div>
             </div>
 

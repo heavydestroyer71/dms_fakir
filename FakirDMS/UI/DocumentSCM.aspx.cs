@@ -118,7 +118,9 @@ namespace FakirDMS.UI
                 if (user_role == 8)
                 {
                     divStoreLocation.Visible = true;
-                }
+                    CalendarExtender1.Enabled = false;
+
+				}
             }
         }
 
@@ -200,14 +202,14 @@ namespace FakirDMS.UI
 
             if (activity.IsApprover == true && activity.IsCloser == false)
             {
-                btnWorkflowForward.Text = "Approved";
+                //btnWorkflowForward.Text = "Approved";
                 hfIsApprover.Value = "1";
                 btnWorkflowDecline.Visible = true;
                 divMrrTracking.Visible = true;
                 btnLoadMrrListAPI.Visible = false;
                 btnLoadMrrListMCD.Visible = false;
                 gvMrr.Columns[0].Visible = false;
-                gvMrr.Enabled = false;
+                //gvMrr.Enabled = false;
                 lblAddMrr.Visible = false;
 
 
@@ -252,8 +254,10 @@ namespace FakirDMS.UI
 
 				_dtRoom = PopulateLists.GetRackWiseShelf(box_ddlRackName.SelectedValue);
 				FillList.PopulateDropDownList(_dtRoom, box_ddlRackName, "Select Rack");
+
 				_dtRoom = PopulateLists.GetRackWiseShelf(box_ddlRackName.SelectedValue);
 				FillList.PopulateDropDownList(_dtRoom, box_ddlShelfName, "Select Shelf");
+
 				_dtRoom = PopulateLists.GetShelfWiseBox(box_ddlShelfName.SelectedValue);
 				FillList.PopulateDropDownList(_dtRoom, box_ddlBoxfName, "Select Box");
 			}
@@ -580,19 +584,23 @@ namespace FakirDMS.UI
                 txtBillNo.Focus();
                 return false;
             }
-            else if (txtBillAmount.Enabled == true && String.IsNullOrEmpty(txtBillAmount.Text))
+            else if (txtBillAmount.Enabled == true && !(txtBillAmount.Text.ToDecimal() > 0))
             {
-                _errorMessage = "Please enter bill amount";
-                txtBillAmount.Focus();
-                return false;
+                    _errorMessage = "Please enter bill amount";
+                    txtBillAmount.Focus();
+                    return false;
             }
-            //else if (txtDiscountAmount.Enabled == true && String.IsNullOrEmpty(txtDiscountAmount.Text))
-            //{
-            //    _errorMessage = "Please enter discount amount";
-            //    txtDiscountAmount.Focus();
-            //    return false;
-            //}
-            else if (Convert.ToInt32(hfSubmitCount.Value) > 0)
+			else if (txtBillAmount.Text.ToInt() > 0)
+			{
+
+			}
+			//else if (txtDiscountAmount.Enabled == true && String.IsNullOrEmpty(txtDiscountAmount.Text))
+			//{
+			//    _errorMessage = "Please enter discount amount";
+			//    txtDiscountAmount.Focus();
+			//    return false;
+			//}
+			else if (Convert.ToInt32(hfSubmitCount.Value) > 0)
             {
                 _errorMessage = "The document already submitted.";
                 return false;
@@ -1126,7 +1134,8 @@ namespace FakirDMS.UI
 
         protected void btnWorkflowForward_Click(object sender, EventArgs e)
         {
-            if(box_ddlBoxfName.SelectedValue == "0" && user_role == 8)
+            //box_ddlBoxfName.SelectedValue == "0" 
+            if(box_ddlBoxfName.SelectedValue == "0" && _user.GetCookie(CookieKey.RoleId.ToString()).ToInt() == 8)
             {
                 DisplayMessage("Enter Store Information Properly");
                 return;
@@ -1139,7 +1148,22 @@ namespace FakirDMS.UI
 					if (_user.GetCookie(CookieKey.RoleId.ToString()) == "8")
 					{
 						_dataManager = new DataManager();
-						SqlParameter[] parameters = new SqlParameter[7]
+						SqlParameter[] parameters = new SqlParameter[9]
+						{
+						_dataManager.MakeInParam("@DocumentId", SqlDbType.NVarChar, 500, hfDocumentId.Value),
+						_dataManager.MakeInParam("@SupervisorId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
+						_dataManager.MakeInParam("@TeamMemberId", SqlDbType.NVarChar, 500, 0),
+						_dataManager.MakeInParam("@Days", SqlDbType.NVarChar, 500,0),
+						_dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "SaveTask"),
+						_dataManager.MakeInParam("@VoucherNo", SqlDbType.NVarChar, 500, txtPaymentVoucherNo.Text),
+						_dataManager.MakeInParam("@VoucherDate", SqlDbType.NVarChar, 500, txtPaymentVoucherDate.Text),
+						_dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
+						_dataManager.MakeInParam("@FlowId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.RoleId.ToString()))
+						};
+						DataTable dtDocuments = _dataManager.GetDataTable("SP_DOCUMENT_TASK_ASSIGN", parameters);
+
+						//_dataManager = new DataManager();
+						parameters = new SqlParameter[7]
 						{
 					        _dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value),
 					        _dataManager.MakeInParam("@Remarks", SqlDbType.NVarChar, 500, txtRemarksBoss.Text),
@@ -1166,7 +1190,7 @@ namespace FakirDMS.UI
 							Boolean isSuccess = Convert.ToBoolean(_dtReturn.Rows[0]["IsSuccess"].ToString());
 							DisplayMessage(_dtReturn.Rows[0]["Message"].ToString());
 						}
-						Response.Redirect("~/UI/Home.aspx", false);
+						Response.Redirect("~/UI/Dashborad.aspx", false);
 					}
 
 					else
@@ -2004,7 +2028,7 @@ namespace FakirDMS.UI
                 newRow["Date"] = row["WO_DATE"].ToString().Replace("&nbsp;", "");
                 newRow["Supplier"] = row["SUPPLIER_NAME"].ToString().Replace("&nbsp;", "");
                 //newRow["Category"] = row["ITEM_CATEGORY_NAME"].ToString().Replace("&nbsp;", "");
-                //newRow["ReportPath"] = "#";//"http://192.168.100.4/fakirfashion_erp/commercial/work_order/requires/spare_parts_work_order_controller.php?data=" + row["ID"].ToString().Replace("&nbsp;", "") + "&action=spare_parts_work_order_print2&dms_token=FFLDMS2024";
+                newRow["ReportPath"] = "http://192.168.100.4/fakirfashion_erp/commercial/work_order/requires/spare_parts_work_order_controller.php?data=" + row["ID"].ToString().Replace("&nbsp;", "") + "&action=spare_parts_work_order_print2&dms_token=FFLDMS2024";
                 
                 NewDataTable.Rows.Add(newRow);
             }

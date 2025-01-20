@@ -22,7 +22,7 @@
                                     Tracking No.
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3">
-                                    <asp:TextBox ID="txtBillRef" runat="server" placeholder="Search with tracking no." MaxLength="9" CssClass="TextBoxStyle"></asp:TextBox>
+                                    <asp:TextBox ID="txtBillRef" runat="server" placeholder="Search with tracking no." CssClass="TextBoxStyle"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-1">
                                     <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
@@ -79,7 +79,15 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3">
                                     <asp:Label runat="server" ID="lblRoleName" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                                    <asp:Label runat="server" ID="lblPrevRoleId" Font-Bold="True" ForeColor="Blue" Visible="False"></asp:Label>
                                 </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1">
+                                     User Name
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-3">
+                                     <asp:Label runat="server" ID="lblUserName" Font-Bold="True" ForeColor="Blue"></asp:Label>
+                                     <asp:Label runat="server" ID="lblPrevUserId" Font-Bold="True" ForeColor="Blue" Visible="False"></asp:Label>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -90,9 +98,15 @@
                                     Move To
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3">
-                                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="DropDownListStyle"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="true"  CssClass="DropDownListStyle" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                    User
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <asp:DropDownList ID="ddlUser" runat="server" CssClass="DropDownListStyle"></asp:DropDownList>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
                                     <asp:TextBox runat="server" ID="txtRemarks" placeholder="Write reason for force movement" CssClass="TextBoxStyle"></asp:TextBox>
                                 </div>
                             </div>

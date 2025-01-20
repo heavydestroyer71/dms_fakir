@@ -44,6 +44,7 @@ namespace FakirDMS.UI
 
             if (!IsPostBack)
             {
+				searchPanel.Visible = false;
 				LoadDropDownListCompany();
                 LoadDropDownListCategory();
                 LoadDropDownListTeamMember();
@@ -109,11 +110,49 @@ namespace FakirDMS.UI
 
 				lblSubmittedDocCount.Text = dtDocuments.Rows.Count.ToString();
 				FillList.PopulateGridView(dtDocuments, gvDocumentsSubmitted);
+				if (gvDocumentsSubmitted.Rows.Count > 10)
+				{
+					gridContainer_submit.Style["height"] = "400px"; // Set a fixed height
+					gridContainer_submit.Style["overflow-y"] = "auto"; // Enable vertical scrolling
+				}
+				else
+				{
+					gridContainer_submit.Style.Remove("height"); // Remove fixed height
+					gridContainer_submit.Style.Remove("overflow-y"); // Remove scrolling
+				}
+
 			}
 			catch (Exception ex)
 			{
 				DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
 				ErrorTracking.SaveError(_user.EmployeeId, this.GetType().FullName.Replace("ASP.", "").Replace("_", "."), System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
+			}
+		}
+		protected void txtTracking_TextChanged(object sender, EventArgs e)
+		
+        {
+			// Get the search term from the TextBox
+			string searchTerm = txtTracking.Text.Trim();
+
+			// Retrieve the data from ViewState
+			DataTable GridViewData = ViewState["GridViewData"] as DataTable;
+
+			if (GridViewData != null)
+			{
+				// Filter data
+				DataView dv = GridViewData.DefaultView;
+				if (!string.IsNullOrEmpty(searchTerm))
+				{
+					dv.RowFilter = $"BillRefNo LIKE '%{searchTerm}%'";
+				}
+				else
+				{
+					dv.RowFilter = string.Empty; // Show all data if no filter
+				}
+
+				// Bind the filtered data to GridView
+				gvDocuments.DataSource = dv;
+				gvDocuments.DataBind();
 			}
 		}
 		protected void BingGridViewDocumentList()
@@ -135,7 +174,18 @@ namespace FakirDMS.UI
 
                 lblWorkflowCount.Text = dtDocuments.Rows.Count.ToString();
                 FillList.PopulateGridView(dtDocuments, gvDocuments);
-            }
+				ViewState["GridViewData"] = dtDocuments;
+				if (gvDocuments.Rows.Count > 20)
+				{
+					gridContainer.Style["height"] = "400px"; // Set a fixed height
+					gridContainer.Style["overflow-y"] = "auto"; // Enable vertical scrolling
+				}
+				else
+				{
+					gridContainer.Style.Remove("height"); // Remove fixed height
+					gridContainer.Style.Remove("overflow-y"); // Remove scrolling
+				}
+			}
             catch (Exception ex)
             {
                 DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
@@ -257,22 +307,28 @@ namespace FakirDMS.UI
 
                     if (cbIsSelect.Checked == true)
                     {
-                        _dataManager = new DataManager();
-                        SqlParameter[] parameters = new SqlParameter[5]
-                        {
-                            _dataManager.MakeInParam("@DocumentId", SqlDbType.NVarChar, 500, sDocId),
-                            _dataManager.MakeInParam("@VoucherNo", SqlDbType.NVarChar, 500, voucher_no),
-                            _dataManager.MakeInParam("@VoucherDate", SqlDbType.NVarChar, 500, voucher_date),
-							_dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
-							_dataManager.MakeInParam("@FlowId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.RoleId.ToString()))
+						_dataManager = new DataManager();
+						SqlParameter[] parameters = new SqlParameter[9]
+						{
+						_dataManager.MakeInParam("@DocumentId", SqlDbType.NVarChar, 500, sDocId),
+						_dataManager.MakeInParam("@SupervisorId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
+						_dataManager.MakeInParam("@TeamMemberId", SqlDbType.NVarChar, 500, 0),
+						_dataManager.MakeInParam("@Days", SqlDbType.NVarChar, 500,0),
+						_dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "SaveTask"),
+						_dataManager.MakeInParam("@VoucherNo", SqlDbType.NVarChar, 500, voucher_no),
+						_dataManager.MakeInParam("@VoucherDate", SqlDbType.NVarChar, 500, voucher_date),
+						_dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
+						_dataManager.MakeInParam("@FlowId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.RoleId.ToString()))
 						};
-                        DataTable dtDocuments = _dataManager.GetDataTable("SP_DOCUMENT_INITIAL_VOUCHER_NO", parameters);
+						DataTable dtDocuments = _dataManager.GetDataTable("SP_DOCUMENT_TASK_ASSIGN", parameters);
                     }
-					Response.Redirect(Request.Path);
+					//Response.Redirect(Request.Path);
 				}
 
                 BingGridViewDocumentList();
-            }
+                BingGridViewDocumentList_Submitted();
+
+			}
             catch (Exception ex)
             {
                 DisplayMessage("An error has been occurred. Please contact the software vendor.\\n \\nError: " + ex.Message);
@@ -336,12 +392,13 @@ namespace FakirDMS.UI
                     }
                 }
 
-				Response.Redirect(Request.Path);
+				Response.Redirect(Request.RawUrl);
 			}
             else
             {
 
             }
+			BingGridViewDocumentList();
 		}
 		protected Boolean CheckValidationForRevert()
 		{

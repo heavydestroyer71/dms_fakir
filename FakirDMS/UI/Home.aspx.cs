@@ -100,18 +100,18 @@ namespace FakirDMS
 				if (user_flow == "7" || user_flow == "8")
                 {
 					SqlParameter[] parameters = new SqlParameter[2]
-				{
+				    {
 						_dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
 						_dataManager.MakeInParam("@FlowId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.RoleId.ToString()))
-				};
+				    };
 					dsDashboard = _dataManager.GetDataSet("SP_SYS_DASHBOARD_ACCOUNTS", parameters);
 				}
                 else
                 {
 					SqlParameter[] parameters = new SqlParameter[1]
-				{
-                    _dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
-				};
+				    {
+                        _dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString()))
+				    };
 					dsDashboard = _dataManager.GetDataSet("SP_SYS_DASHBOARD", parameters);
 				}
 				
@@ -137,7 +137,16 @@ namespace FakirDMS
                 if(dsDashboard.Tables[2].Rows.Count > 0)
                 {
                     lblOwnDocCount.Text = dsDashboard.Tables[2].Rows.Count.ToString();
-					FillList.PopulateGridView(dsDashboard.Tables[2], gvOwnDocuments);
+                    if (_user.GetCookie(CookieKey.RoleId.ToString())!= "2")
+                    {
+                        lblOwnDocCount.Text = "0";
+
+						FillList.PopulateGridView(new DataTable(), gvOwnDocuments);
+                    }
+                    else
+                    {
+						FillList.PopulateGridView(dsDashboard.Tables[2], gvOwnDocuments);
+					}
                 }
                 else
                 {

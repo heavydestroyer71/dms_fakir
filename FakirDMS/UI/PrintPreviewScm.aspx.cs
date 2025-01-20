@@ -76,7 +76,12 @@ namespace FakirDMS.UI
                     txtVatAmount.Text = ds.Tables[0].Rows[0]["VatAmount"].ToString();
                     txtVATChallanNo.Text = ds.Tables[0].Rows[0]["VATChallanNo"].ToString();
                     txtVATDate.Text = ds.Tables[0].Rows[0]["VATChallanDate"].ToString();
-                }
+
+					txtRoom.Text = ds.Tables[0].Rows[0]["RoomName"].ToString();
+					txtRack.Text = ds.Tables[0].Rows[0]["RackName"].ToString();
+					txtShelf.Text = ds.Tables[0].Rows[0]["Shelf"].ToString();
+					txtBox.Text = ds.Tables[0].Rows[0]["Box"].ToString();
+				}
 
                 if (ds.Tables[1].Rows.Count > 0)    //DocumentComments
                 {

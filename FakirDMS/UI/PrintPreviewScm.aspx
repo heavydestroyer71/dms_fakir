@@ -210,6 +210,47 @@
                 </div>
             </div>
 
+            <div runat="server" id="divStoreLocation" class="panel panel-info">
+                <div class="panel-header">Store Location</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                            Room Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:TextBox runat="server" ID="txtRoom" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            Rack Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                           <asp:TextBox runat="server" ID="txtRack" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            Shelf Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:TextBox runat="server" ID="txtShelf" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                        </div>
+                        <div class="col-md-1 col-sm-1">
+                            Box Name
+                        </div>
+                        <div class="col-md-2 col-sm-2">
+                            <asp:TextBox runat="server" ID="txtBox" Enabled="False" CssClass="TextBoxStyle"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row">
+            
+                    </div>
+                    <div class="row">
+            
+                    </div>
+                    <div class="row">
+            
+                    </div>
+                </div>
+            </div>
+
             <div class="row" style="margin-top: 15px">
                 <div class="col-6">
 

@@ -3,6 +3,9 @@ using System.Data;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using System.Security.Policy;
+using System.util;
+using System.IO;
 
 namespace CoreLibrary
 {
@@ -93,7 +96,8 @@ namespace CoreLibrary
                         JArray resultSetArray = (JArray)jsonObject["resultset"];
 
                         dtApiResult = ConvertJArrayToDataTable(resultSetArray);
-                    }
+						WriteEntry("\n" + Convert.ToString(DateTime.Now) + "\n" + Convert.ToString(endpointAddress)+ "\n" + response.StatusCode);
+					}
                     else
                     {
                         // Handle the error if necessary
@@ -137,6 +141,31 @@ namespace CoreLibrary
 
             return dataTable;
         }
-        #endregion
-    }
+		public static void CreateDirectoryIfNotExists(string directoryPath)
+		{
+			try
+			{
+				if (!Directory.Exists(directoryPath))
+				{
+					Directory.CreateDirectory(directoryPath);
+				}
+			}
+			catch (Exception ex)
+			{
+				WriteEntry("\n" + Convert.ToString(DateTime.Now) + "\n" + "CreateDirectoryIfNotExists" + "" + "\n" + ex.Message);
+			}
+		}
+		private static readonly string logFolder = $"C://API_Log";
+		public const string DateFormat = "yyyy-MMM-dd";
+		public static void WriteEntry(string val)
+		{
+			CreateDirectoryIfNotExists(logFolder);
+			var logfilePath = $@"{logFolder}\ApiLog-{DateTime.Today.ToString(DateFormat)}.txt";
+			using (var writer = new StreamWriter(logfilePath, true))
+			{
+				writer.WriteLine(val);
+			}
+		}
+		#endregion
+	}
 }

@@ -2,7 +2,52 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server">
+    <style>
+        #gridContainer {
+        max-height: 400px;
+        overflow-y: auto;
+        position: relative;
+        }
+
+        /* Hide original header to avoid duplication */
+        .styledGridView thead {
+            visibility: hidden;
+        }
+
+        /* Style for the fixed cloned header */
+        .fixedHeader {
+            display: table;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            background-color: #f1f1f1;
+            z-index: 10;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Additional styling for header row */
+        .GridViewHeader th {
+            background-color: #e9e9e9;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const gridContainer = document.getElementById("gridContainer");
+			const gridView = document.querySelector(".styledGridView");
+			const originalHeader = gridView.querySelector("thead");
+
+			// Proceed only if the GridView has data rows
+			if (originalHeader && gridView.querySelector("tbody tr")) {
+				// Clone the header row
+				const clonedHeader = originalHeader.cloneNode(true);
+				clonedHeader.classList.add("fixedHeader");
+				gridContainer.insertBefore(clonedHeader, gridContainer.firstChild);
+			}
+		});
+    </script>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
     <%--<asp:UpdatePanel runat="server" ID="uppdatePanel">
         <ContentTemplate>--%>
@@ -150,11 +195,11 @@
             <div class="panel panel-info">
                 <div class="panel-header">Workflow Documents (<asp:Label ID="lblWorkflowCount" runat="server" Text="0"></asp:Label>)</div>
                 <div class="panel-body">
-                    <asp:GridView ID="gvWorkflowDocuments" runat="server"
+                        <asp:GridView ID="gvWorkflowDocuments" runat="server"
                         OnRowCommand="gvWorkflowDocuments_RowCommand"
                         OnPageIndexChanging="gvWorkflowDocuments_PageIndexChanging"
                         AutoGenerateColumns="false" AllowPaging="true" PageSize="10" Width="100%"
-                        ShowHeaderWhenEmpty="True" CellPadding="8" CellSpacing="4" HorizontalAlign="Center" CssClass="ssGridToggle"
+                        ShowHeaderWhenEmpty="True" CellPadding="8" CellSpacing="4" HorizontalAlign="Center" CssClass="styledGridView"
                         BackColor="#FCFCFC" BorderColor="#DADADA" BorderStyle="Solid" BorderWidth="1px">
                         <AlternatingRowStyle BackColor="WhiteSmoke" />
                         <Columns>
@@ -206,6 +251,7 @@
                         <PagerStyle CssClass="GridViewPagerStyle" />
                         <PagerSettings FirstPageText="First" NextPageText="Next" PreviousPageText="Prev" LastPageText="Last" Mode="NumericFirstLast" />
                     </asp:GridView>
+                        
                 </div>
             </div>
 

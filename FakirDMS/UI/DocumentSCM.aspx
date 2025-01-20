@@ -107,8 +107,8 @@
                 <asp:BoundField HeaderText="Id" DataField="Id" HeaderStyle-CssClass="HideGridColumn" ItemStyle-CssClass="HideGridColumn" />
                 <asp:TemplateField HeaderText="Purchase Order" ItemStyle-Width="200px" HeaderStyle-Width="200px">
                 <ItemTemplate>
-                <%--<asp:HyperLink ID="gHlPOPath" runat="server" NavigateUrl='<%#Eval("ReportPath") %>' Text='<%#Eval("RefNo") %>' Target="_blank"></asp:HyperLink>--%>
-                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='#' Text='<%#Eval("RefNo") %>'></asp:HyperLink>
+                <asp:HyperLink ID="gHlPOPath" runat="server" NavigateUrl='<%#Eval("ReportPath") %>' Text='<%#Eval("RefNo") %>' Target="_blank"></asp:HyperLink>
+                    <%--<asp:HyperLink ID="HyperLink" runat="server" NavigateUrl='#' Text='<%#Eval("RefNo") %>'></asp:HyperLink>--%>
                 </ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField HeaderText="Supplier" DataField="SupplierName" />
@@ -286,10 +286,7 @@
             <asp:BoundField DataField="TrackingDate" HeaderText="Tracking Date" />
             <asp:TemplateField HeaderText="MRR No.">
                 <ItemTemplate>
-                    <asp:HyperLink 
-                        ID="HyperLink1" 
-                        runat="server" 
-                        NavigateUrl='<%# "http://192.168.100.4/fakirfashion_erp/inventory/general_store/requires/general_item_receive_controller.php?data="+ Eval("MrrId")+"&action=general_item_receive_print_new&dms_token=FFLDMS2024" %>'
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "http://192.168.100.4/fakirfashion_erp/inventory/general_store/requires/general_item_receive_controller.php?data="+ Eval("MrrId")+"&action=general_item_receive_print_new&dms_token=FFLDMS2024" %>'
                         Text='<%#Eval("MrrNo") %>' ToolTip='<%#Eval("MrrNo") %>' Target="_blank">
                     </asp:HyperLink>
                 </ItemTemplate>
@@ -452,7 +449,7 @@
                             <asp:DropDownList runat="server" ID="ddlRevertTo" Style="width: 200px; height: 38px; font-size: 1rem; padding: 0.375rem 0.75rem;"></asp:DropDownList>
                             <%--<asp:Button runat="server" ID="btnWorkflowSave" OnClick="btnSaveDocument_Click" Text="Save" CssClass="btn btn-primary" />--%>
                             <asp:Button runat="server" ID="btnWorkflowReject" OnClick="btnWorkflowReject_Click" Text="Reject" CssClass="btn btn-warning" />
-                            <asp:Button runat="server" ID="btnWorkflowForward" OnClick="btnWorkflowForward_Click" Text="Submit" CssClass="btn btn-success" OnClientClick="if (!confirm('Are you sure you want Submit/Approve?')) return false;" />
+                            <asp:Button runat="server" ID="btnWorkflowForward" OnClick="btnWorkflowForward_Click" Text="Submit" CssClass="btn btn-success" OnClientClick="if (!confirm('Are you sure you want Submit/Close?')) return false;" />
 
                             <asp:Button runat="server" ID="btnWorkflowDecline" OnClick="btnWorkflowDecline_Click" Text="Delete" CssClass="btn btn-danger" />
                             <asp:Button runat="server" ID="btnWorkflowBackToList" OnClick="btnWorkflowBackToList_Click" Text="Back to List" CssClass="btn btn-secondary" />

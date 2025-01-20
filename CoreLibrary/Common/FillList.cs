@@ -104,7 +104,9 @@ namespace CoreLibrary
 
             GridViewId.DataSource = GridViewData;
             GridViewId.DataBind();
-        }
+
+			
+		}
 
         public static StringWriter ExportToExcel(GridView gridView)
         {

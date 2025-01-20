@@ -47,11 +47,11 @@ namespace CoreLibrary
         }
         public static String PurchaseOrderInfo(String CatgId, String PoId)
         {
-          String sPurchaseOrderUrl = "purchase_order_details/catg_id/@catg_id@/order_no/";
+          String sPurchaseOrderUrl = $"purchase_order_details/catg_id/{CatgId}/order_no/{PoId}";
 
-          sPurchaseOrderUrl = sPurchaseOrderUrl.Replace("@catg_id@", CatgId);
+          //sPurchaseOrderUrl = sPurchaseOrderUrl.Replace("@catg_id@", CatgId);
 
-            String sFullUrl = sBaseUrl() + sPurchaseOrderUrl + PoId;
+            String sFullUrl = sBaseUrl() + sPurchaseOrderUrl;
             return sFullUrl;
         }
         public static String ProformaInvoiceInfo(String CatgId, String PiId)

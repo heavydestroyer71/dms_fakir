@@ -86,13 +86,22 @@ namespace FakirDMS.UI
         {
             try
             {
-                String sActionType = "WORKFLOW";
+				string user_flow = _user.GetCookie(CookieKey.RoleId.ToString());
+				String sActionType = "WORKFLOW";
                 if(cbIsForwarded.Checked== true)
                 {
                     sActionType = "FORWARD";
                 }
 
-                _dataManager = new DataManager();
+                if (user_flow == "8")
+                {
+					sActionType = "CLOSED";
+					if (cbIsForwarded.Checked == true)
+					{
+						sActionType = "FORWARD";
+					}
+				}
+				_dataManager = new DataManager();
                 SqlParameter[] parameters = new SqlParameter[8]
                 {
                      _dataManager.MakeInParam("@CompanyId", SqlDbType.NVarChar, 500, ddlCompany.SelectedValue),

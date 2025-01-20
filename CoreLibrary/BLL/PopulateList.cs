@@ -164,8 +164,19 @@ namespace CoreLibrary
             };
             return dataManager.GetDataTable("SP_SYS_POPULATE_LIST", parameters);
         }
+		public static DataTable GetUsersbyFlow(int flowId, int userId, string username)
+		{
+			DataManager dataManager = new DataManager();
+			SqlParameter[] parameters = new SqlParameter[3]
+			{
+				dataManager.MakeInParam("@FlowId", SqlDbType.NVarChar, 500, flowId),
+				dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, userId),
+				dataManager.MakeInParam("@UserName", SqlDbType.NVarChar, 500, username)
+			};
+			return dataManager.GetDataTable("GET_USER_LIST", parameters);
+		}
 
-        public static DataTable GetRoomWiseRack(String RoomId)
+		public static DataTable GetRoomWiseRack(String RoomId)
         {
             DataManager dataManager = new DataManager();
             SqlParameter[] parameters = new SqlParameter[2]

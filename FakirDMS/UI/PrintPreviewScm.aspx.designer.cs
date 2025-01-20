@@ -249,6 +249,51 @@ namespace FakirDMS.UI
 		protected global::System.Web.UI.WebControls.TextBox txtPaymentVoucherDate;
 
 		/// <summary>
+		/// divStoreLocation control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStoreLocation;
+
+		/// <summary>
+		/// txtRoom control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtRoom;
+
+		/// <summary>
+		/// txtRack control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtRack;
+
+		/// <summary>
+		/// txtShelf control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtShelf;
+
+		/// <summary>
+		/// txtBox control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox txtBox;
+
+		/// <summary>
 		/// gvComment control.
 		/// </summary>
 		/// <remarks>

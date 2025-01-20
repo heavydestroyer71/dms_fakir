@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mime;
 using System.Xml;
+using FokirDMS;
 
 
 namespace FakirDMS.UI
@@ -79,11 +80,14 @@ namespace FakirDMS.UI
             try
             {
                 _dataManager = new DataManager();
-                SqlParameter[] parameters = new SqlParameter[5]
+                SqlParameter[] parameters = new SqlParameter[8]
                 {
                      _dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value.ToString()),
                      _dataManager.MakeInParam("@RoleId", SqlDbType.NVarChar, 500, ddlRole.SelectedValue),
-                     _dataManager.MakeInParam("@Remarks", SqlDbType.NVarChar, 500, txtRemarks.Text),
+					 _dataManager.MakeInParam("@PrevRoleId", SqlDbType.NVarChar, 500, lblPrevRoleId.Text),
+					 _dataManager.MakeInParam("@UserId", SqlDbType.NVarChar, 500, ddlUser.SelectedValue),
+					 _dataManager.MakeInParam("@PrevUserId", SqlDbType.NVarChar, 500, lblPrevUserId.Text),
+					 _dataManager.MakeInParam("@Remarks", SqlDbType.NVarChar, 500, txtRemarks.Text),
                      _dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
                      _dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "Forward")
                 };
@@ -160,8 +164,10 @@ namespace FakirDMS.UI
                         lblDuration.Text = dr["Waiting"].ToString();
                         lblCategoryName.Text = dr["CategoryName"].ToString();
                         lblRoleName.Text = dr["RoleName"].ToString();
-
-                        hfDocumentId.Value = dr["DocumentId"].ToString();
+                        lblPrevRoleId.Text = dr["RoleID"].ToString();
+						lblUserName.Text = dr["PrevFlowUserName"].ToString();
+						lblPrevUserId.Text = dr["PrevFlowUserId"].ToString();
+						hfDocumentId.Value = dr["DocumentId"].ToString();
                         hfCategoryId.Value = dr["CategoryId"].ToString();
                     }
                 }
@@ -204,6 +210,19 @@ namespace FakirDMS.UI
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "showalert", "alert('" + sMessage + "');", true);
             return;
         }
-        #endregion
-    }
+		#endregion
+
+		protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Get the selected role value
+			string selectedRole = ddlRole.SelectedValue;
+
+			// FlowId to filter data (example value: 6)
+			//int flowId = 6;
+
+			// Fetch data from the database
+			DataTable _users = PopulateLists.GetUsersbyFlow(selectedRole.ToInt(), 0 ,"");
+			FillList.PopulateDropDownList(_users, ddlUser, "Select User");
+		}
+	}
 }
