@@ -203,7 +203,7 @@ namespace FakirDMS.UI
             if (activity.IsApprover == true && activity.IsCloser == false)
             {
                 //btnWorkflowForward.Text = "Approved";
-                hfIsApprover.Value = "1";
+                //hfIsApprover.Value = "1";
                 btnWorkflowDecline.Visible = true;
                 divMrrTracking.Visible = true;
                 btnLoadMrrListAPI.Visible = false;
@@ -217,7 +217,7 @@ namespace FakirDMS.UI
             else if (activity.IsApprover == false && activity.IsCloser == true)
             {
                 btnWorkflowForward.Text = "Close";
-                hfIsApprover.Value = "1";
+                //hfIsApprover.Value = "1";
                 ddlRevertTo.Visible = false;
                 btnWorkflowReject.Visible = false;
                 btnWorkflowDecline.Visible = false;
@@ -1177,7 +1177,6 @@ namespace FakirDMS.UI
 						DataTable _dtReturn = _dataManager.GetDataTable("SP_SYS_DOCUMENT_CLOSE_ACCOUNTS", parameters);
 						if (hfIsApprover.Value == "1")
 						{
-
 							String sApproveFolder = ConfigurationManager.AppSettings["ApproveFolder"].ToString();
 
 							String sApprovetWatermark = Server.MapPath("~/" + sApproveFolder + "/approve.png");

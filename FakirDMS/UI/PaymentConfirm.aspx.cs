@@ -8,6 +8,7 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Text;
 using DocumentFormat.OpenXml.Office2010.Word;
+using System.Collections.Generic;
 
 namespace FakirDMS.UI
 {
@@ -27,7 +28,7 @@ namespace FakirDMS.UI
 
             try
             {
-                DataTable dtMenu = (DataTable)Session["MenuList"];
+				DataTable dtMenu = (DataTable)Session["MenuList"];
                 String sPageName = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
                 bool isPermitted = dtMenu.AsEnumerable().Any(row => row["menu_url"].ToString().Contains(sPageName));
                 if (!isPermitted)
@@ -44,18 +45,100 @@ namespace FakirDMS.UI
 
             if (!IsPostBack)
             {
-				searchPanel.Visible = false;
+				Session["SelectedRows"] = new List<int>();
+				txtTracking.Visible = false;
+				//searchPanel.Visible = false;
 				LoadDropDownListCompany();
                 LoadDropDownListCategory();
                 LoadDropDownListTeamMember();
                 BingGridViewDocumentList();
                 BingGridViewDocumentList_Submitted();
 				LoadDropDownListRevertTo();
-
 			}
         }
 
 		#region Page Load Related Event
+		protected void gvCbSelect_CheckedChanged(object sender, EventArgs e)
+		{
+			CheckBox cbSelect = (CheckBox)sender;
+			GridViewRow row = (GridViewRow)cbSelect.NamingContainer;
+			HiddenField hfDocumentId = (HiddenField)row.FindControl("gvHfDocumentId");
+
+			if (hfDocumentId != null)
+			{
+				int documentId = Convert.ToInt32(hfDocumentId.Value);
+
+				// Retrieve or initialize the session list
+				List<int> selectedRows = Session["SelectedRows"] as List<int> ?? new List<int>();
+
+				if (cbSelect.Checked)
+				{
+					// Add to session if not already present
+					if (!selectedRows.Contains(documentId))
+					{
+						selectedRows.Add(documentId);
+					}
+				}
+				else
+				{
+					// Remove from session if present
+					selectedRows.Remove(documentId);
+				}
+
+				// Save updated list back to session
+				Session["SelectedRows"] = selectedRows;
+			}
+		}
+
+		private void RestoreSelectedRows()
+		{
+			// Restore selections from session
+			if (Session["SelectedRows"] != null)
+			{
+				var selectedRows = (List<int>)Session["SelectedRows"];
+				foreach (GridViewRow row in gvDocuments.Rows)
+				{
+					HiddenField hfDocumentId = (HiddenField)row.FindControl("gvHfDocumentId");
+					CheckBox cbSelect = (CheckBox)row.FindControl("gvCbSelect");
+
+					if (hfDocumentId != null && cbSelect != null && selectedRows.Contains(Convert.ToInt32(hfDocumentId.Value)))
+					{
+						cbSelect.Checked = true;
+					}
+				}
+			}
+		}
+		private void StoreSelectedRows()
+		{
+			if (Session["SelectedRows"] == null)
+			{
+				Session["SelectedRows"] = new List<int>();
+			}
+
+			// Retrieve the session object as a list
+			List<int> selectedRows = (List<int>)Session["SelectedRows"];
+
+			foreach (GridViewRow row in gvDocuments.Rows)
+			{
+				HiddenField hfDocumentId = (HiddenField)row.FindControl("gvHfDocumentId");
+				CheckBox cbSelect = (CheckBox)row.FindControl("gvCbSelect");
+
+				if (hfDocumentId != null && cbSelect != null)
+				{
+					int documentId = Convert.ToInt32(hfDocumentId.Value);
+					if (cbSelect.Checked && !selectedRows.Contains(documentId))
+					{
+						selectedRows.Add(documentId);
+					}
+					else if (!cbSelect.Checked && selectedRows.Contains(documentId))
+					{
+						selectedRows.Remove(documentId);
+					}
+				}
+			}
+
+			Session["SelectedRows"] = selectedRows;
+		}
 		protected void LoadDropDownListRevertTo()
 		{
 			try
@@ -157,9 +240,10 @@ namespace FakirDMS.UI
 		}
 		protected void BingGridViewDocumentList()
         {
-            try
+			//Session["SelectedRows"] = new List<int>();
+			try
             {
-                _dataManager = new DataManager();
+				_dataManager = new DataManager();
                 SqlParameter[] parameters = new SqlParameter[6]
                 {
                     _dataManager.MakeInParam("@CompanyId", SqlDbType.NVarChar, 500, ddlCompany.SelectedValue),
@@ -185,6 +269,7 @@ namespace FakirDMS.UI
 					gridContainer.Style.Remove("height"); // Remove fixed height
 					gridContainer.Style.Remove("overflow-y"); // Remove scrolling
 				}
+				//RestoreSelectedRows();
 			}
             catch (Exception ex)
             {
@@ -276,8 +361,11 @@ namespace FakirDMS.UI
         #region Button Click Event
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+			btnSearch.Enabled = false;
             BingGridViewDocumentList();
-        }
+			RestoreSelectedRows();
+			btnSearch.Enabled = true;
+		}
 
         protected void btnReload_Click(object sender, EventArgs e)
         {
@@ -285,7 +373,8 @@ namespace FakirDMS.UI
             ddlCategory.SelectedIndex = -1;
             txtRefNo.Text = String.Empty;
             txtSearchBy.Text = String.Empty;
-            BingGridViewDocumentList();
+			Session["SelectedRows"] = new List<int>();
+			BingGridViewDocumentList();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

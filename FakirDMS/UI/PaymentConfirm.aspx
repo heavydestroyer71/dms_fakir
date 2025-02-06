@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 	<asp:UpdatePanel runat="server" ID="uppdatePanel">
 		<ContentTemplate>
-			<div runat="server" id="searchPanel" class="panel panel-info" style="margin-top: 15px" visible="false">
+			<div runat="server" id="searchPanel" class="panel panel-info" style="margin-top: 15px">
 				<div class="panel-header">Document - Search Criteria</div>
 				<div class="panel-body">
 					<div class="row">
@@ -68,7 +68,8 @@
 									<asp:TemplateField HeaderText="Select" HeaderStyle-Width="50px" ItemStyle-CssClass="50px" ItemStyle-HorizontalAlign="Center">
 										<ItemTemplate>
 											<asp:HiddenField runat="server" ID="gvHfDocumentId" Value='<%#Eval("DocumentID") %>' />
-											<asp:CheckBox runat="server" ID="gvCbSelect" />
+											<asp:CheckBox runat="server" ID="gvCbSelect" AutoPostBack="True" 
+    OnCheckedChanged="gvCbSelect_CheckedChanged" />
 										</ItemTemplate>
 									</asp:TemplateField>
 									<asp:TemplateField HeaderText="Tracking No.">
