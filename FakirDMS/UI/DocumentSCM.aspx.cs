@@ -115,7 +115,7 @@ namespace FakirDMS.UI
                     txtPaymentVoucherNo.ReadOnly=true;
                     txtPaymentVoucherDate.ReadOnly=true;
 				}
-                if (user_role == 8)
+                if (user_role == 30 || user_role == 8)
                 {
                     divStoreLocation.Visible = true;
                     CalendarExtender1.Enabled = false;
@@ -379,6 +379,7 @@ namespace FakirDMS.UI
                     txtVoucherDate.Text = ds.Tables[0].Rows[0]["VoucherDate"].ToString();
 					txtPaymentVoucherNo.Text = ds.Tables[0].Rows[0]["PaymentVoucherNo"].ToString();
 					txtPaymentVoucherDate.Text = ds.Tables[0].Rows[0]["PaymentVoucherDate"].ToString();
+                    user_role = ds.Tables[0].Rows[0]["RoleId"].ToInt();
 					//txtPaymentAmount.Text = ds.Tables[0].Rows[0]["PaymentAmount"].ToString();
 				}
 
