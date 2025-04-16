@@ -95,7 +95,7 @@ namespace FakirDMS.UI
                 ControlVisibility();
 				divStoreLocation.Visible = false;
 
-				if (user_role == 4)
+				if (user_role == 4 || user_role == 23)
                 {
 					btnLoadMrrListAPI.Visible = true;
 					btnLoadMrrListMCD.Visible = true;
@@ -108,14 +108,14 @@ namespace FakirDMS.UI
 					txtPaymentVoucherNo.ReadOnly = true;
 				}
 
-				if (user_role > 6)
+				if (user_role != 6 && user_role != 25)
                 {
 					txtVoucherNo.ReadOnly = true;
 					txtVoucherDate.ReadOnly = true;
                     txtPaymentVoucherNo.ReadOnly=true;
                     txtPaymentVoucherDate.ReadOnly=true;
 				}
-                if (user_role == 30 || user_role == 8)
+                if (user_role == 30 || user_role == 8 || user_role == 27)
                 {
                     divStoreLocation.Visible = true;
                     CalendarExtender1.Enabled = false;
@@ -894,7 +894,7 @@ namespace FakirDMS.UI
                     hfSubmitCount.Value = Convert.ToString(Convert.ToInt32(hfSubmitCount.Value) + 1);
                     DisplayMessage(_dtReturn.Rows[0]["Message"].ToString());
 
-                    Response.Redirect("~/UI/OwnDocument.aspx?ProcessId=2", false);
+                    Response.Redirect("~/UI/Home.aspx", false);
                 }
                 else
                 {
@@ -1021,7 +1021,7 @@ namespace FakirDMS.UI
                 { sVoucherDate = txtVoucherDate.Text; }
 
                     _dataManager = new DataManager();
-                SqlParameter[] parameters = new SqlParameter[25]
+                SqlParameter[] parameters = new SqlParameter[26]
                 {
                     _dataManager.MakeInParam("@DocumentID", SqlDbType.NVarChar, 500, hfDocumentId.Value),
                      _dataManager.MakeInParam("@BillRefNo", SqlDbType.NVarChar, 500, txtBillRefNo.Text),
@@ -1054,16 +1054,26 @@ namespace FakirDMS.UI
                     _dataManager.MakeInParam("@IsClosed", SqlDbType.NVarChar, 500, /*cbBillClosed.Checked*/ 0),
 
                     _dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
-                    _dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, sAction)
-                };
+                    _dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, sAction),
+					_dataManager.MakeInParam("@RoleId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.RoleId.ToString()))
+				};
 
-                DataTable _dtReturn = _dataManager.GetDataTable("SP_SYS_DOCUMENT_FLOW_SCM", parameters);
-                if (_dtReturn.Rows.Count > 0)
-                {
-                    isSuccess = Convert.ToBoolean(_dtReturn.Rows[0]["IsSuccess"].ToString());
+				DataSet dsDashboard = _dataManager.GetDataSet("SP_SYS_DOCUMENT_FLOW_SCM", parameters);
+				if (dsDashboard.Tables[0].Rows.Count > 0)
+				{
+                    
 
                     BindGridViewDocumentData();
-                    DisplayMessage(_dtReturn.Rows[0]["Message"].ToString());
+                    if(sAction == "DRAFT")
+                    {
+						isSuccess = Convert.ToBoolean(dsDashboard.Tables[0].Rows[0]["IsSuccess"].ToString());
+						DisplayMessage(dsDashboard.Tables[0].Rows[0]["Message"].ToString());
+					}
+                    else
+                    {
+						isSuccess = Convert.ToBoolean(dsDashboard.Tables[3].Rows[0]["IsSuccess"].ToString());
+						DisplayMessage(dsDashboard.Tables[3].Rows[0]["Message"].ToString());
+					}
                 }
                 else
                 {

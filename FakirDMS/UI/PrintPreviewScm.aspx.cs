@@ -125,7 +125,8 @@ namespace FakirDMS.UI
             dtDetails.Columns.Add("RefNo", typeof(String));
             dtDetails.Columns.Add("Date", typeof(String));
             dtDetails.Columns.Add("SupplierName", typeof(String));
-            dtDetails.Rows.Add(dtDetails.NewRow());
+			dtDetails.Columns.Add("ChallanNo", typeof(String));
+			dtDetails.Rows.Add(dtDetails.NewRow());
 
             ViewState["DetailsData"] = dtDetails;
         }
@@ -153,9 +154,8 @@ namespace FakirDMS.UI
                     gvPurchaseOrder.DataSource = (DataTable)ViewState["DetailsData"];
                     gvPurchaseOrder.DataBind();
                 }
-
-
-                 sQuery = "SELECT ROW_NUMBER() OVER(ORDER BY TransId ASC) AS SL,TransId as RowId,DocumentId,'MR' as Type,TransId as Id,MrrNo as RefNo,MrrDate as Date,ChallanNo,MrrDate as ChallanDate,'' as SupplierName,EntryDate FROM DocumentScmMrr WHERE DocumentId=" + hfDocumentId.Value;
+                
+                sQuery = "SELECT ROW_NUMBER() OVER(ORDER BY TransId ASC) AS SL,TransId as RowId,DocumentId,'MR' as Type,TransId as Id,MrrNo as RefNo,MrrDate as Date,ChallanNo,MrrDate as ChallanDate,'' as SupplierName,EntryDate FROM DocumentScmMrr WHERE DocumentId=" + hfDocumentId.Value;
 
                 _dataManager = new DataManager();
                  dtDetails = _dataManager.GetDataTable(sQuery);
@@ -186,6 +186,7 @@ namespace FakirDMS.UI
                 //    gvChallan.DataSource = (DataTable)ViewState["DetailsData"];
                 //    gvChallan.DataBind();
                 //}
+
             }
             catch (Exception ex)
             {

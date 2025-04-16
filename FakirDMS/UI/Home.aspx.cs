@@ -51,7 +51,6 @@ namespace FakirDMS
 					dashboard_total.Visible = false;
 					dashboard_status.Visible = false;
 				}
-
 			}
         }
 		protected void LoadTopDashboardData()

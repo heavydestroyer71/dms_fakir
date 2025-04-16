@@ -87,7 +87,7 @@ namespace FakirDMS.UI
                     _dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "WORKFLOW")
                 };
 
-                DataTable dtDocuments = _dataManager.GetDataTable("SP_DOCUMENT_TASK_ASSIGN", parameters);
+                DataTable dtDocuments = _dataManager.GetDataTable("SP_DOCUMENT_TASK_ASSIGN_LOAD", parameters);
 
                 lblWorkflowCount.Text = dtDocuments.Rows.Count.ToString();
                 FillList.PopulateGridView(dtDocuments, gvDocuments);
