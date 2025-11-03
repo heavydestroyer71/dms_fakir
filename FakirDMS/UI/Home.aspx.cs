@@ -23,6 +23,10 @@ namespace FakirDMS
 			{
 				Response.Redirect(String.Format("~/UI/PaymentConfirm.aspx", false));
 			}
+            else if(_user.GetCookie(CookieKey.RoleId.ToString())== "8" || _user.GetCookie(CookieKey.RoleId.ToString()) == "27")
+            {
+                Response.Redirect(String.Format("~/UI/BillClosing.aspx"), false);
+            }
 			if (String.IsNullOrEmpty(_user.GetCookie(CookieKey.UserId.ToString())) || _user.GetCookie(CookieKey.UserId.ToString()) == "0")
             {
                 Response.Redirect(String.Format("~/Default.aspx", false));
@@ -45,7 +49,7 @@ namespace FakirDMS
 					dashboard_total.Visible = true;
 					dashboard_status.Visible = false;
 				}
-				else if (_user.GetCookie(CookieKey.RoleId.ToString()) == "8")
+				else if (_user.GetCookie(CookieKey.RoleId.ToString()) == "8" || _user.GetCookie(CookieKey.RoleId.ToString()) == "27")
 				{
 					dashboard_all.Visible = false;
 					dashboard_total.Visible = false;

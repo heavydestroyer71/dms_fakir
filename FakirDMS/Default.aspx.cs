@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Web.UI;
 using CoreLibrary;
 using DocumentFormat.OpenXml.Office2010.Word;
+using DocumentFormat.OpenXml.Spreadsheet;
 using FakirDMS.UI;
 
 namespace FakirDMS
@@ -69,11 +70,14 @@ namespace FakirDMS
         {
             try
             {
-				String sQuery = @"SELECT u.UserID as UserID, u.UserName as UserName, uc.FlowId as FlowId, u.LoginID, ISNULL(u.CompanyID,1) as CompanyID, u.DepartmentID, u.Password FROM Sys_Users u left join Sys_UserCompany uc on u.UserId = uc.UserId WHERE u.LoginID='" + txtEmployeeId.Text.Trim() + "'";
-
-
 				_dataManager = new DataManager();
-                DataTable dtUser = _dataManager.GetDataTable(sQuery);
+                //DataTable dtUser = _dataManager.GetDataTable(sQuery);
+
+				SqlParameter[] parameters = new SqlParameter[1]
+				{
+					_dataManager.MakeInParam("@EmployeeId", SqlDbType.NVarChar, 100, txtEmployeeId.Text.Trim())
+				};
+				DataTable dtUser = _dataManager.GetDataTable("SP_SELECT_LOGIN_USER", parameters);
 
 				if (dtUser.Rows.Count > 0)
 				{
@@ -92,6 +96,15 @@ namespace FakirDMS
 						//UpdateItemCategory("0");
 
 						LoadUserWisMenuList();
+						if (dtUser.Rows[0]["FlowId"].ToString() == "7" || dtUser.Rows[0]["FlowId"].ToString() == "26")
+						{
+							Response.Redirect(String.Format("~/UI/PaymentConfirm.aspx", false));
+						}
+						else if (dtUser.Rows[0]["FlowId"].ToString() == "8" || dtUser.Rows[0]["FlowId"].ToString() == "27")
+						{
+							Response.Redirect(String.Format("~/UI/BillClosing.aspx"), false);
+						}
+                        else 
 						Response.Redirect("~/UI/Home.aspx", false);
 					}
 					else

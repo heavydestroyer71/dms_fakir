@@ -51,7 +51,7 @@
             <div class="login-footer">
                 <div class="copyright">
                     <span>&copy&nbsp;2023&nbsp;All Rights Reserved | Design & Developed by
-                    <a target="_blank" href="http://www.logicsoftbd.com/">Logic Infotech Ltd.</a>
+                    <a target="_blank" href="http://www.logicsoftbd.com/">Logic Software Ltd.</a>
                     </span>
                 </div>
             </div>

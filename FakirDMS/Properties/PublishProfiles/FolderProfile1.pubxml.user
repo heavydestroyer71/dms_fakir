@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>D:\Publish</_PublishTargetUrl>
-    <History>True|2025-01-20T08:59:33.8542029Z;True|2025-01-15T17:40:05.8749498+06:00;True|2025-01-15T15:50:04.6297758+06:00;True|2024-10-06T00:11:18.3122235+06:00;True|2024-10-02T12:28:24.5931253+06:00;True|2024-10-02T12:22:32.3809442+06:00;True|2024-09-15T13:00:44.3005893+06:00;True|2024-09-12T12:57:47.2630627+06:00;True|2024-08-31T15:54:45.0089207+06:00;True|2024-08-29T13:56:10.6857821+06:00;True|2024-08-28T11:21:07.3949252+06:00;True|2024-06-27T11:44:45.9259620+06:00;True|2024-06-22T16:21:14.4541625+06:00;True|2024-06-13T16:34:26.9112876+06:00;True|2024-06-13T11:23:46.4679682+06:00;True|2024-06-13T11:23:05.5054185+06:00;True|2024-06-12T17:24:12.6182411+06:00;True|2024-06-10T13:14:17.3596578+06:00;True|2024-06-05T17:03:50.5528153+06:00;True|2024-06-05T16:02:34.0913337+06:00;</History>
+    <History>True|2025-09-04T06:58:26.1323323Z;True|2025-07-15T13:13:54.8457331+06:00;True|2025-05-25T17:35:19.2455745+06:00;True|2025-04-16T11:41:57.5685737+06:00;True|2025-04-13T14:57:24.1863816+06:00;True|2025-04-07T18:09:15.2944207+06:00;True|2025-03-24T11:02:10.6412557+06:00;True|2025-03-20T12:21:08.4430984+06:00;True|2025-01-22T17:14:03.9515418+06:00;True|2025-01-22T14:36:56.6754673+06:00;True|2025-01-20T14:59:33.8542029+06:00;True|2025-01-15T17:40:05.8749498+06:00;True|2025-01-15T15:50:04.6297758+06:00;True|2024-10-06T00:11:18.3122235+06:00;True|2024-10-02T12:28:24.5931253+06:00;True|2024-10-02T12:22:32.3809442+06:00;True|2024-09-15T13:00:44.3005893+06:00;True|2024-09-12T12:57:47.2630627+06:00;True|2024-08-31T15:54:45.0089207+06:00;True|2024-08-29T13:56:10.6857821+06:00;True|2024-08-28T11:21:07.3949252+06:00;True|2024-06-27T11:44:45.9259620+06:00;True|2024-06-22T16:21:14.4541625+06:00;True|2024-06-13T16:34:26.9112876+06:00;True|2024-06-13T11:23:46.4679682+06:00;True|2024-06-13T11:23:05.5054185+06:00;True|2024-06-12T17:24:12.6182411+06:00;True|2024-06-10T13:14:17.3596578+06:00;True|2024-06-05T17:03:50.5528153+06:00;True|2024-06-05T16:02:34.0913337+06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -133,13 +133,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/05/2024 20:14:24</publishTime>
     </File>
     <File Include="bin/CoreLibrary.dll">
-      <publishTime>01/20/2025 14:59:32</publishTime>
+      <publishTime>11/03/2025 16:17:45</publishTime>
     </File>
     <File Include="bin/CoreLibrary.dll.config">
       <publishTime>06/22/2024 16:14:39</publishTime>
     </File>
     <File Include="bin/CoreLibrary.pdb">
-      <publishTime>01/20/2025 14:59:32</publishTime>
+      <publishTime>11/03/2025 16:17:45</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
       <publishTime>03/15/2022 07:39:18</publishTime>
@@ -148,10 +148,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/02/2020 14:42:28</publishTime>
     </File>
     <File Include="bin/FokirDMS.dll">
-      <publishTime>01/20/2025 14:59:33</publishTime>
+      <publishTime>11/03/2025 16:17:45</publishTime>
     </File>
     <File Include="bin/FokirDMS.pdb">
-      <publishTime>01/20/2025 14:59:33</publishTime>
+      <publishTime>11/03/2025 16:17:45</publishTime>
     </File>
     <File Include="bin/Irony.dll">
       <publishTime>07/18/2018 07:40:26</publishTime>
@@ -187,7 +187,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/20/2022 14:49:02</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>01/18/2024 18:17:31</publishTime>
+      <publishTime>10/30/2025 15:44:13</publishTime>
     </File>
     <File Include="DocumentsApprove/approve.png">
       <publishTime>09/16/2023 23:57:58</publishTime>
@@ -220,13 +220,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/16/2023 23:57:58</publishTime>
     </File>
     <File Include="MasterPage.Master">
-      <publishTime>06/22/2024 18:27:38</publishTime>
+      <publishTime>10/30/2025 15:44:00</publishTime>
     </File>
     <File Include="UI/AllDocumentReport.aspx">
       <publishTime>11/03/2024 12:59:03</publishTime>
     </File>
     <File Include="UI/ArchiveList.aspx">
       <publishTime>10/29/2023 11:23:44</publishTime>
+    </File>
+    <File Include="UI/BillClosing.aspx">
+      <publishTime>05/25/2025 17:24:05</publishTime>
+    </File>
+    <File Include="UI/BillStatusSummary.aspx">
+      <publishTime>10/21/2025 15:45:56</publishTime>
     </File>
     <File Include="UI/Category.aspx">
       <publishTime>01/09/2025 17:15:05</publishTime>
@@ -247,7 +253,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/29/2023 09:50:38</publishTime>
     </File>
     <File Include="UI/Flowpath.aspx">
-      <publishTime>01/31/2024 17:57:03</publishTime>
+      <publishTime>08/26/2025 11:23:38</publishTime>
     </File>
     <File Include="UI/ForceMovement.aspx">
       <publishTime>01/09/2025 17:47:21</publishTime>
@@ -265,7 +271,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/25/2023 03:30:48</publishTime>
     </File>
     <File Include="UI/PaymentConfirm.aspx">
-      <publishTime>01/15/2025 18:56:43</publishTime>
+      <publishTime>01/22/2025 19:18:13</publishTime>
     </File>
     <File Include="UI/PrintPreview.aspx">
       <publishTime>02/27/2024 16:17:30</publishTime>
@@ -318,8 +324,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="UI/Viewer.aspx">
       <publishTime>09/16/2023 23:57:58</publishTime>
     </File>
+    <File Include="UI/WorkFlow.aspx">
+      <publishTime>11/03/2025 15:54:47</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>01/20/2025 14:59:33</publishTime>
+      <publishTime>11/03/2025 16:17:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -186,10 +186,13 @@
     <Content Include="Images\draft.png" />
     <Content Include="Images\fal_logo.png" />
     <Content Include="Images\road-barrier.png" />
+    <Content Include="UI\BillStatusSummary.aspx" />
     <Content Include="UI\AllDocumentReport.aspx" />
     <Content Include="UI\DocumentMCD.aspx" />
     <Content Include="UI\DocumentSCM_Bak.aspx" />
     <Content Include="UI\DocumentStore.aspx" />
+    <Content Include="UI\BillClosing.aspx" />
+    <Content Include="UI\WorkFlow.aspx" />
     <Content Include="UI\PrintPreviewScm.aspx" />
     <Content Include="UI\Reports\BillReceiveSlip.aspx" />
     <Content Include="UI\PaymentConfirm.aspx" />
@@ -256,6 +259,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="UI\BillStatusSummary.aspx.cs">
+      <DependentUpon>BillStatusSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\BillStatusSummary.aspx.designer.cs">
+      <DependentUpon>BillStatusSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\AllDocumentReport.aspx.cs">
       <DependentUpon>AllDocumentReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -283,6 +293,20 @@
     </Compile>
     <Compile Include="UI\DocumentStore.aspx.designer.cs">
       <DependentUpon>DocumentStore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BillClosing.aspx.cs">
+      <DependentUpon>BillClosing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\BillClosing.aspx.designer.cs">
+      <DependentUpon>BillClosing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WorkFlow.aspx.cs">
+      <DependentUpon>WorkFlow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\WorkFlow.aspx.designer.cs">
+      <DependentUpon>WorkFlow.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\PrintPreviewScm.aspx.cs">
       <DependentUpon>PrintPreviewScm.aspx</DependentUpon>
