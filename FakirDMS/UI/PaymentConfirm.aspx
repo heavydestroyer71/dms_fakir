@@ -210,4 +210,20 @@
 			</div>
 		</ContentTemplate>
 	</asp:UpdatePanel>
+
+	<asp:UpdateProgress ID="updateProgress" runat="server">
+		<ProgressTemplate>
+			<div class="loading-panel">
+				<div class="loading-container">
+					<center>
+						<div style="background-color: white; height: 120px; width: 400px; padding-top: 50px;" class="border border-info rounded-5">
+							<span>Processing, Please wait a moment...</span>
+							<br />
+							<img src="<%= this.ResolveUrl("~/Images/loading-logo.gif")%>" width="350px" alt="Please wait..." />
+						</div>
+					</center>
+				</div>
+			</div>
+		</ProgressTemplate>
+	</asp:UpdateProgress>
 </asp:Content>

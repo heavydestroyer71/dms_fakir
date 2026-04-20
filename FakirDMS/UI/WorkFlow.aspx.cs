@@ -18,8 +18,11 @@ namespace FakirDMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (!IsPostBack)
+			if (String.IsNullOrEmpty(_user.GetCookie(CookieKey.UserId.ToString())) || _user.GetCookie(CookieKey.UserId.ToString()) == "0")
+			{
+				Response.Redirect(String.Format("~/Default.aspx", false));
+			}
+			if (!IsPostBack)
             {
 				string flowId = Request.QueryString["FlowId"];
 				//string categoryId = Request.QueryString["CategoryId"];

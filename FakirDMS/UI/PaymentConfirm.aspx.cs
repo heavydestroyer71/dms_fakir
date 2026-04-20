@@ -413,8 +413,10 @@ namespace FakirDMS.UI
                     }
 					//Response.Redirect(Request.Path);
 				}
-
-                BingGridViewDocumentList();
+				DisplayMessage("Selected Document Submitted");
+				txtpaymentVoucherNo.Text = string.Empty;
+				txtFromDate.Text = string.Empty;
+				BingGridViewDocumentList();
                 BingGridViewDocumentList_Submitted();
 
 			}

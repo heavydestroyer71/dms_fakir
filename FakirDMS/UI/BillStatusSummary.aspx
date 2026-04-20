@@ -313,7 +313,7 @@
 						<h3>
 							<asp:Label ID="lblOnTimeRate" runat="server" Text="0%"></asp:Label></h3>
 
-						<p>On Time Rate</p>
+						<p>On Time Rate (In Hand)</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-person-add"></i>
@@ -328,7 +328,7 @@
 					<div class="inner">
 						<h3>
 							<asp:Label ID="lblDelayedRate" runat="server" Text="0%"></asp:Label></h3>
-						<p>Delayed Rate</p>
+						<p>Delayed Rate (In Hand)</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-pie-graph"></i>

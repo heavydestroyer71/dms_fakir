@@ -207,7 +207,7 @@ namespace FakirDMS.UI
         }
 
         protected void btnSaveTask_Click(object sender, EventArgs e)
-        {
+            {
             try
             {
 
@@ -226,11 +226,12 @@ namespace FakirDMS.UI
                     if (cbIsSelect.Checked == true)
                     {
                         _dataManager = new DataManager();
-                        SqlParameter[] parameters = new SqlParameter[5]
+                        SqlParameter[] parameters = new SqlParameter[6]
                         {
                         _dataManager.MakeInParam("@DocumentId", SqlDbType.NVarChar, 500, sDocId),
                         _dataManager.MakeInParam("@SupervisorId", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
-                        _dataManager.MakeInParam("@TeamMemberId", SqlDbType.NVarChar, 500, ddlTeamMember.SelectedValue),
+						_dataManager.MakeInParam("@EntryBy", SqlDbType.NVarChar, 500, _user.GetCookie(CookieKey.UserId.ToString())),
+						_dataManager.MakeInParam("@TeamMemberId", SqlDbType.NVarChar, 500, ddlTeamMember.SelectedValue),
                         _dataManager.MakeInParam("@Days", SqlDbType.NVarChar, 500, txtAllocatedDays.Text),
                         _dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "SaveTask")
                         };

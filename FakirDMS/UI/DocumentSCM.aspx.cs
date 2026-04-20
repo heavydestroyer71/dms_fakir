@@ -24,10 +24,11 @@ namespace FakirDMS.UI
 		String _errorMessage = String.Empty;
         DataManager _dataManager = new DataManager();
         int user_role = 0;
+		String cookies_RoleId = new Cookie().GetCookiesRoleId();
+		String UserRole = "";
 
-              
 
-        protected void Page_Load(object sender, EventArgs e)
+		protected void Page_Load(object sender, EventArgs e)
         {
             #region Check User Login Status
 
@@ -86,7 +87,42 @@ namespace FakirDMS.UI
                 {
                     hfDocumentId.Value = Request.QueryString["DocumentID"];
                     LoadDocumentForUpdate();
-                    LoadMrrList();
+
+					Cookie cookieForFlowIDs = new Cookie();
+					string flowIdArray = cookieForFlowIDs.GetCookie("multipleFlowId");
+
+
+					int[] flowIds = flowIdArray.Split(',')
+												 .Select(id => int.Parse(id))
+												 .ToArray();
+
+
+					Boolean redirectStatus = true;
+
+					foreach (var item in flowIds)
+					{
+						if (item == Convert.ToInt16(UserRole))
+						{
+							//var docId = hfDocumentId.Value.ToString();
+							//string url = $"~/UI/DocumentSCM.aspx?documentId={hfDocumentId.Value}&categoryId={userIdCat}";
+							//Response.Redirect(url, false);
+							redirectStatus = false;
+						}
+					}
+
+
+					// Split and convert to int array
+
+
+					if (redirectStatus)
+					{
+						var docId = hfDocumentId.Value.ToString();
+						//DisplayMessage("hello world " + docId);
+						string url = $"~/UI/PrintPreviewScm.aspx?documentId={docId}";
+						Response.Redirect(url, false);
+					}
+
+					LoadMrrList();
                     TrackingNoGeneratedMode();
                     LoadDropDownListRevertTo();
                 }
@@ -108,7 +144,7 @@ namespace FakirDMS.UI
 					txtPaymentVoucherNo.ReadOnly = true;
 				}
 
-				if (user_role != 6 && user_role != 25)
+				if (user_role != 6 && user_role != 25 && user_role != 33)
                 {
 					txtVoucherNo.ReadOnly = true;
 					txtVoucherDate.ReadOnly = true;
@@ -380,6 +416,7 @@ namespace FakirDMS.UI
 					txtPaymentVoucherNo.Text = ds.Tables[0].Rows[0]["PaymentVoucherNo"].ToString();
 					txtPaymentVoucherDate.Text = ds.Tables[0].Rows[0]["PaymentVoucherDate"].ToString();
                     user_role = ds.Tables[0].Rows[0]["RoleId"].ToInt();
+                    UserRole = user_role.ToString();
 					//txtPaymentAmount.Text = ds.Tables[0].Rows[0]["PaymentAmount"].ToString();
 				}
 

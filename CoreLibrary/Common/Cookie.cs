@@ -66,7 +66,7 @@ namespace CoreLibrary
         #endregion
 
         #region Public Properties
-        
+
         public String UserId
         {
             get
@@ -283,9 +283,40 @@ namespace CoreLibrary
             }
         }
         #endregion
-    }
+        public String GetCookiesRoleId()
+        {
+            HttpCookie cookieRoleId = Context.Request.Cookies["RoleId"];
 
-    public enum CookieKey { UserId, EmployeeId, GroupId, RoleId, DepartmentId, CompanyId, UserName, RoleName};
+
+            return cookieRoleId.Value;
+        }
+        public String TackStatus()
+        {
+
+            HttpCookie cookie = Context.Request.Cookies["track"];
+            if (cookie == null)
+            {
+                return "0";
+            }
+
+
+
+            return cookie.Value;
+        }
+        public void TackStatusUpdate()
+        {
+            HttpCookie cookie = Context.Request.Cookies["track"];
+
+            if (cookie != null)
+            {
+                cookie.Value = "false";
+                //cookie.Expires = DateTime.Now.AddDays(1); // optional but recommended
+                Context.Response.Cookies.Set(cookie);
+            }
+
+        }
+    }
+		public enum CookieKey { UserId, EmployeeId, GroupId, RoleId, DepartmentId, CompanyId, UserName, multipleFlowId, RoleName };
 }
 
 

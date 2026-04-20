@@ -91,7 +91,7 @@ namespace FakirDMS
 						userCookie.SetCookie(CookieKey.CompanyId.ToString(), dtUser.Rows[0]["CompanyId"].ToString());
 						userCookie.SetCookie(CookieKey.DepartmentId.ToString(), dtUser.Rows[0]["DepartmentId"].ToString());
 						userCookie.SetCookie(CookieKey.UserName.ToString(), dtUser.Rows[0]["UserName"].ToString());
-
+						userCookie.SetCookie(CookieKey.multipleFlowId.ToString(), dtUser.Rows[0]["FlowIDS"].ToString());
 
 						//UpdateItemCategory("0");
 

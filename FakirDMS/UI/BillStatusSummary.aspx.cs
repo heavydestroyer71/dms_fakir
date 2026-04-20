@@ -1,13 +1,14 @@
-﻿using System;
+﻿using FokirDMS;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Text;
 
 namespace FakirDMS.UI
 {
@@ -47,7 +48,7 @@ namespace FakirDMS.UI
 		private void BindCategoryDropdown()
 		{
 			string connectionString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
-			string query = "SELECT CategoryId, CategoryName FROM Sys_Category ORDER BY CategoryName";
+			string query = "SELECT CategoryId, CategoryName, * FROM Sys_Category WHERE IsActive = 1 and CategoryId in (2,5)";
 
 			using (SqlConnection con = new SqlConnection(connectionString))
 			{
@@ -108,8 +109,14 @@ namespace FakirDMS.UI
 
 					con.Open();
 					SqlDataAdapter da = new SqlDataAdapter(cmd);
-					DataTable dt = new DataTable();
-					da.Fill(dt);
+					//DataTable dt = new DataTable();
+					DataSet ds = new DataSet();
+
+					// 2. Fill the DataSet. This will create "Table", "Table1", etc. automatically
+					da.Fill(ds);
+
+					DataTable dt = ds.Tables[0];
+					DataTable dt1 = ds.Tables[1];
 
 					gvDocumentFlow.DataSource = dt;
 					gvDocumentFlow.DataBind();
@@ -117,19 +124,19 @@ namespace FakirDMS.UI
 					// Calculate summary values
 					int totalInHand = dt.AsEnumerable().Sum(row => row.Field<int>("TotalInHand"));
 					int totalCompleted = dt.AsEnumerable().Sum(row => row.Field<int>("TotalCompleted"));
-					int totalDocuments = totalInHand + totalCompleted;
+					int totalDocuments = dt1.Rows[0]["TotalDocument"].ToString().ToInt(); //totalInHand + totalCompleted;
 
 					int inHandOnTime = dt.AsEnumerable().Sum(row => row.Field<int>("InHandOnTime"));
 					int completedOnTime = dt.AsEnumerable().Sum(row => row.Field<int>("CompletedOnTime"));
 					int totalOnTime = inHandOnTime + completedOnTime;
 
-					double onTimeRate = totalDocuments > 0 ? Math.Round((totalOnTime * 100.0) / totalDocuments, 1) : 0;
+					double onTimeRate = totalInHand > 0 ? Math.Round((inHandOnTime * 100.0) / totalInHand, 2) : 0;
 					double delayedRate = 100 - onTimeRate;
 
 					// Update summary controls
-					lblTotalDocuments.Text = totalDocuments.ToString();
-					lblOnTimeRate.Text = onTimeRate.ToString("0.0") + "%";
-					lblDelayedRate.Text = delayedRate.ToString("0.0") + "%";
+					lblTotalDocuments.Text = dt1.Rows[0]["TotalDocument"].ToString();
+					lblOnTimeRate.Text = onTimeRate.ToString("0.00") + "%";
+					lblDelayedRate.Text = delayedRate.ToString("0.00") + "%";
 					lblInHandDocuments.Text = totalInHand.ToString();
 
 					//progressOnTime.Style["width"] = onTimeRate.ToString("0.0") + "%";
