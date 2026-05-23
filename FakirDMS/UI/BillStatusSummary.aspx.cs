@@ -1,4 +1,6 @@
-﻿using FokirDMS;
+﻿using CoreLibrary;
+using DocumentFormat.OpenXml.Drawing.Spreadsheet;
+using FokirDMS;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,47 +22,51 @@ namespace FakirDMS.UI
 			{
 				lblLastUpdated.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
 				pnlFilters.Visible = true;
-				BindFlowDropdown();
+				//BindFlowDropdown();
 				BindCategoryDropdown();
 				//BindMultiCategoryList();
 				BindDocumentFlowData();
 			}
 		}
-
-		private void BindFlowDropdown()
+		private void BindFlowDropdown(string selectedCategoryId)
 		{
+
 			string connectionString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
-			string query = "SELECT FlowId, FlowName FROM Sys_Flowpath WHERE FlowId NOT IN (100, 0, 1, 2, 9, 21, 28) ORDER BY FlowName";
+			string query = "SELECT FlowId, FlowName FROM Sys_Flowpath WHERE IsActive = 1  and CategoryId = @CategoryId  AND IsActive=1 ORDER by SerialNo ASC";
 
 			using (SqlConnection con = new SqlConnection(connectionString))
 			{
 				using (SqlCommand cmd = new SqlCommand(query, con))
 				{
+					ddlFlow.Items.Clear(); // 🔥 Reset old items
+					cmd.Parameters.AddWithValue("@CategoryId", selectedCategoryId);
 					con.Open();
 					ddlFlow.DataSource = cmd.ExecuteReader();
 					ddlFlow.DataTextField = "FlowName";
 					ddlFlow.DataValueField = "FlowId";
 					ddlFlow.DataBind();
+					ddlFlow.Items.Insert(0, new ListItem("All Flow", ""));
 				}
 			}
 		}
-
 		private void BindCategoryDropdown()
 		{
-			string connectionString = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
-			string query = "SELECT CategoryId, CategoryName, * FROM Sys_Category WHERE IsActive = 1 and CategoryId in (2,5)";
+			DataManager dataManager = new DataManager();
 
-			using (SqlConnection con = new SqlConnection(connectionString))
+			SqlParameter[] parameters = new SqlParameter[1]
 			{
-				using (SqlCommand cmd = new SqlCommand(query, con))
-				{
-					con.Open();
-					ddlCategory.DataSource = cmd.ExecuteReader();
-					ddlCategory.DataTextField = "CategoryName";
-					ddlCategory.DataValueField = "CategoryId";
-					ddlCategory.DataBind();
-				}
-			}
+		dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "Category")
+			};
+
+			DataTable dtCategorys = dataManager.GetDataTable("SP_SYS_POPULATE_LIST", parameters);
+
+			dtCategorys.Columns["ValueField"].ColumnName = "CategoryId";
+			dtCategorys.Columns["DisplayField"].ColumnName = "CategoryName";
+
+			ddlCategory.DataSource = dtCategorys;
+			ddlCategory.DataTextField = "CategoryName";
+			ddlCategory.DataValueField = "CategoryId";
+			ddlCategory.DataBind();
 		}
 
 		//private void BindMultiCategoryList()
@@ -91,22 +97,8 @@ namespace FakirDMS.UI
 				using (SqlCommand cmd = new SqlCommand("rpt_GetDocumentFlowAnalysis", con))
 				{
 					cmd.CommandType = CommandType.StoredProcedure;
-
-					// Add parameters if they have values
-					if (!string.IsNullOrEmpty(ddlFlow.SelectedValue))
-						cmd.Parameters.AddWithValue("@FlowId", ddlFlow.SelectedValue);
-
-					if (!string.IsNullOrEmpty(ddlCategory.SelectedValue))
-						cmd.Parameters.AddWithValue("@CategoryId", ddlCategory.SelectedValue);
-
-					// Handle multiple category selection
-					//if (lstCategories.GetSelectedIndices().Length > 0)
-					//{
-					//	string selectedCategories = string.Join(",", lstCategories.GetSelectedIndices()
-					//		.Select(i => lstCategories.Items[i].Value));
-					//	cmd.Parameters.AddWithValue("@CategoryList", selectedCategories);
-					//}
-
+					cmd.Parameters.AddWithValue("@CategoryId", ddlCategory.SelectedValue == "" ? null : ddlCategory.SelectedValue);
+					cmd.Parameters.AddWithValue("@FlowId", ddlFlow.SelectedValue == "" ? null : ddlFlow.SelectedValue);
 					con.Open();
 					SqlDataAdapter da = new SqlDataAdapter(cmd);
 					//DataTable dt = new DataTable();
@@ -261,6 +253,18 @@ namespace FakirDMS.UI
 		public override void VerifyRenderingInServerForm(Control control)
 		{
 			// Required for export functionality
+		}
+
+		protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			string selectedCategoryId = ddlCategory.SelectedValue;
+			BindFlowDropdown(selectedCategoryId);
+			BindDocumentFlowData();
+		}
+
+		protected void ddlFlow_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			BindDocumentFlowData();
 		}
 	}
 }

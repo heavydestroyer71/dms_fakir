@@ -241,33 +241,36 @@
 			<asp:Panel ID="pnlFilters" runat="server" CssClass="card-body" Style="padding: 12px;">
 				<div class="row">
 					<div class="col-md-4 mb-2">
-						<label for="ddlFlow" class="form-label">Flow</label>
-						<asp:DropDownList ID="ddlFlow" runat="server" CssClass="form-select" AppendDataBoundItems="true">
-							<asp:ListItem Text="All Flows" Value=""></asp:ListItem>
+						<label for="ddlCategory" class="form-label">Category (Single)</label>
+						<asp:DropDownList
+							ID="ddlCategory"
+							runat="server"
+							CssClass="form-select"
+							AutoPostBack="true"
+							AppendDataBoundItems="true"
+							OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
+							<asp:ListItem Text="All Categories" Value=""></asp:ListItem>
 						</asp:DropDownList>
 					</div>
+
+
+
 					<div class="col-md-4 mb-2">
-						<label for="ddlCategory" class="form-label">Category (Single)</label>
-						<asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-select" AppendDataBoundItems="true">
-							<asp:ListItem Text="All Categories" Value=""></asp:ListItem>
+						<label for="ddlFlow" class="form-label">Flow</label>
+						<asp:DropDownList ID="ddlFlow" runat="server" CssClass="form-select" AppendDataBoundItems="true" AutoPostBack="true" OnSelectedIndexChanged="ddlFlow_SelectedIndexChanged">
+							<asp:ListItem Text="All Flows" Value=""></asp:ListItem>
 						</asp:DropDownList>
 					</div>
 					<div class="col-md-2 mb-2">
 					</div>
 					<div class="col-md-2 mb-2">
 						<%--<label for="lstCategories" class="form-label">Categories (Multiple)</label>
-                        <asp:ListBox ID="lstCategories" runat="server" CssClass="form-select multi-select" SelectionMode="Multiple"></asp:ListBox>
-                        <small class="form-text text-muted">Hold Ctrl to select multiple categories</small>--%>
+<asp:ListBox ID="lstCategories" runat="server" CssClass="form-select multi-select" SelectionMode="Multiple"></asp:ListBox>
+<small class="form-text text-muted">Hold Ctrl to select multiple categories</small>--%>
 						<asp:Button ID="Button1" runat="server" Text="Apply Filters" CssClass="btn filter-btn me-2" OnClick="btnApplyFilters_Click" />
 						<asp:Button ID="Button2" runat="server" Text="Reset" CssClass="btn btn-secondary btn-sm" OnClick="btnResetFilters_Click" />
 					</div>
 				</div>
-				<%--<div class="row mt-2">
-                    <div class="col-12 text-end">
-                        <asp:Button ID="btnApplyFilters" runat="server" Text="Apply Filters" CssClass="btn filter-btn me-2" OnClick="btnApplyFilters_Click" />
-                        <asp:Button ID="btnResetFilters" runat="server" Text="Reset" CssClass="btn btn-secondary btn-sm" OnClick="btnResetFilters_Click" />
-                    </div>
-                </div>--%>
 			</asp:Panel>
 		</div>
 

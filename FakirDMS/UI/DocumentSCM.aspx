@@ -191,8 +191,7 @@
 						<div class="col-2">
 							<asp:TextBox runat="server" ID="txtBillDate" CssClass="TextBoxStyle"></asp:TextBox>
 							<asp:CalendarExtender ID="CalendarExtender_txtSalesDate" runat="server" CssClass="CalenderTheme"
-								PopupButtonID="txtBillDate" TargetControlID="txtBillDate" Format="dd-MMM-yyyy">
-							</asp:CalendarExtender>
+								PopupButtonID="txtBillDate" TargetControlID="txtBillDate" Format="dd-MMM-yyyy"></asp:CalendarExtender>
 						</div>
 						<div class="col-1">
 							VAT Amount
@@ -212,8 +211,7 @@
 						<div class="col-2">
 							<asp:TextBox runat="server" ID="txtVATDate" CssClass="TextBoxStyle"></asp:TextBox>
 							<asp:CalendarExtender ID="CalendarExtender_txtVATDate" runat="server" CssClass="CalenderTheme"
-								PopupButtonID="txtVATDate" TargetControlID="txtVATDate" Format="dd-MMM-yyyy">
-							</asp:CalendarExtender>
+								PopupButtonID="txtVATDate" TargetControlID="txtVATDate" Format="dd-MMM-yyyy"></asp:CalendarExtender>
 						</div>
 					</div>
 				</div>
@@ -332,9 +330,8 @@
 						<div class="col-2">Payable Voucher Date</div>
 						<div class="col-2">
 							<asp:TextBox runat="server" ID="txtVoucherDate" CssClass="TextBoxStyle"></asp:TextBox>
-                            <asp:CalendarExtender ID="CalExtVoucherDate" runat="server" CssClass="CalenderTheme"
-                                PopupButtonID="txtVoucherDate" TargetControlID="txtVoucherDate" Format="dd-MMM-yyyy">
-							</asp:CalendarExtender>
+							<asp:CalendarExtender ID="CalExtVoucherDate" runat="server" CssClass="CalenderTheme"
+								PopupButtonID="txtVoucherDate" TargetControlID="txtVoucherDate" Format="dd-MMM-yyyy"></asp:CalendarExtender>
 						</div>
 					</div>
 					<div class="row">
@@ -346,8 +343,7 @@
 						<div class="col-2">
 							<asp:TextBox runat="server" ID="txtPaymentVoucherDate" CssClass="TextBoxStyle"></asp:TextBox>
 							<asp:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="CalenderTheme"
-								PopupButtonID="txtPaymentVoucherDate" TargetControlID="txtPaymentVoucherDate" Format="dd-MMM-yyyy">
-							</asp:CalendarExtender>
+								PopupButtonID="txtPaymentVoucherDate" TargetControlID="txtPaymentVoucherDate" Format="dd-MMM-yyyy"></asp:CalendarExtender>
 						</div>
 					</div>
 				</div>
@@ -431,6 +427,18 @@
 							<asp:Button runat="server" ID="btnDefault" Visible="false" />
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div runat="server" id="divAiprocess" class="panel panel-info" style="margin-top: 15px">
+				<div class="panel-header">PDF Upload + AI Processing</div>
+				<div class="panel-body">
+					<asp:FileUpload ID="fileUploader" runat="server" /><br />
+					<br />
+					<asp:Button ID="btnUpload" runat="server" Text="Upload PDF & Process" CssClass="btn btn-primary" OnClick="btnUpload_Click" OnClientClick="return showLoading();" />
+					<br />
+					<br />
+					<asp:Label ID="lblMessage" runat="server" />
 				</div>
 			</div>
 
@@ -744,9 +752,7 @@
 			<asp:PostBackTrigger ControlID="gvAttachment" />
 			<asp:PostBackTrigger ControlID="gvPickerMrrList" />
 			<asp:PostBackTrigger ControlID="gvMrr" />
-
-
-
+			<asp:PostBackTrigger ControlID="btnUpload" />
 		</Triggers>
 	</asp:UpdatePanel>
 
@@ -765,4 +771,16 @@
 			</div>
 		</ProgressTemplate>
 	</asp:UpdateProgress>
+	<script type="text/javascript">function showLoading() {
+
+			console.log("hello world ...");
+
+			var loader = document.getElementById('<%= updateProgress.ClientID %>');
+
+	if (loader) {
+		loader.style.display = 'block';
+	}
+
+	return true;
+}</script>
 </asp:Content>

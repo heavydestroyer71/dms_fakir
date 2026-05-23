@@ -42,15 +42,6 @@ namespace FakirDMS.UI
 		protected global::System.Web.UI.WebControls.Panel pnlFilters;
 
 		/// <summary>
-		/// ddlFlow control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList ddlFlow;
-
-		/// <summary>
 		/// ddlCategory control.
 		/// </summary>
 		/// <remarks>
@@ -58,6 +49,15 @@ namespace FakirDMS.UI
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+
+		/// <summary>
+		/// ddlFlow control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList ddlFlow;
 
 		/// <summary>
 		/// Button1 control.
