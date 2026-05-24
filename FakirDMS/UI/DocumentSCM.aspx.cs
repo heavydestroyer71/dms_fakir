@@ -187,6 +187,10 @@ namespace FakirDMS.UI
 			divUploader.Visible = activity.IsVisibleUploader;
 			divPageHeader.InnerText = activity.CategoryName;
 
+			txtVoucherNo.Enabled = activity.IsPayableVarcharNo;
+			txtVoucherDate.Enabled = activity.IsAccountPayableVarDate;
+			txtPaymentVoucherNo.Enabled = activity.IspaymentVarNo;
+			txtPaymentVoucherDate.Enabled = activity.IsPaymentDate;
 			//divMrrTracking.Visible = activity.IsEnableMR;
 			//divMrrTracking.Visible = activity.IsEnableMR;
 

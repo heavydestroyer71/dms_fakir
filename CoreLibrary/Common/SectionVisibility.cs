@@ -31,9 +31,12 @@ namespace CoreLibrary
         public Boolean IsInitialPath { get; private set; }
         public Boolean IsApprover { get; private set; }
         public Boolean IsCloser { get; private set; }
+		public Boolean IsAccountPayableVarDate { get; private set; }
+		public Boolean IsPayableVarcharNo { get; private set; }
+		public Boolean IspaymentVarNo { get; private set; }
+		public Boolean IsPaymentDate { get; private set; }
 
-
-        public SectionVisibility(String CategoryId, String DocumentId)
+		public SectionVisibility(String CategoryId, String DocumentId)
         {
             DataManager dataManager = new DataManager();
             SqlParameter[] parameters = new SqlParameter[2]
@@ -68,7 +71,12 @@ namespace CoreLibrary
                 IsInitialPath = Convert.ToBoolean(dtPermission.Rows[0]["IsInitialPath"].ToString());
                 IsApprover = Convert.ToBoolean(dtPermission.Rows[0]["IsApprover"].ToString());
                 IsCloser = Convert.ToBoolean(dtPermission.Rows[0]["IsCloser"].ToString());
-            }
+
+				IsAccountPayableVarDate = Convert.ToBoolean(dtPermission.Rows[0]["IsAccountPayableVarDate"].ToString());
+				IsPayableVarcharNo = Convert.ToBoolean(dtPermission.Rows[0]["IsPayableVarcharNo"].ToString());
+				IspaymentVarNo = Convert.ToBoolean(dtPermission.Rows[0]["IspaymentVarNo"].ToString());
+				IsPaymentDate = Convert.ToBoolean(dtPermission.Rows[0]["IsPaymentDate"].ToString());
+			}
         }
     }
 }

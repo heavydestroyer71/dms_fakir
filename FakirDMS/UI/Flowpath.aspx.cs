@@ -72,7 +72,7 @@ namespace FakirDMS.UI
                 if (CheckValidation())
                 {
                     DataManager dataManager = new DataManager();
-                    SqlParameter[] parameters = new SqlParameter[26]
+                    SqlParameter[] parameters = new SqlParameter[30]
                     {
                         dataManager.MakeInParam("@FlowID", SqlDbType.NVarChar, 500, hfFlowId.Value),
                         dataManager.MakeInParam("@CompanyID", SqlDbType.NVarChar, 500, String.Empty),
@@ -92,8 +92,8 @@ namespace FakirDMS.UI
                         dataManager.MakeInParam("@IsAmount", SqlDbType.NVarChar, 500, (cbAmountEnable.Checked ? "1" : "0")),
                         dataManager.MakeInParam("@IsDiscount", SqlDbType.NVarChar, 500, (cbDiscountEnable.Checked ? "1" : "0")),
                         dataManager.MakeInParam("@IsAccounts", SqlDbType.NVarChar, 500, (cbAccountEnable.Checked ? "1" : "0")),
-
-                        dataManager.MakeInParam("@CanUpload", SqlDbType.NVarChar, 500, (cbUpload.Checked ? "1" : "0")),
+						dataManager.MakeInParam("@IsPayableVarcharNo", SqlDbType.NVarChar, 500, (cbAccountPayableVarNo.Checked ? "1" : "0")),dataManager.MakeInParam("@IsAccountPayableVarDate", SqlDbType.NVarChar, 500, (cbAccountPayableVarDate.Checked ? "1" : "0")),dataManager.MakeInParam("@IspaymentVarNo", SqlDbType.NVarChar, 500, (cbAccountPaymentVarNo.Checked ? "1" : "0")),dataManager.MakeInParam("@IsPaymentDate", SqlDbType.NVarChar, 500, (cbAccountPaymentVarDate.Checked ? "1" : "0")),
+						dataManager.MakeInParam("@CanUpload", SqlDbType.NVarChar, 500, (cbUpload.Checked ? "1" : "0")),
                         dataManager.MakeInParam("@CanDownload", SqlDbType.NVarChar, 500, (cbDownload.Checked ? "1" : "0")),
                         dataManager.MakeInParam("@CanDelete", SqlDbType.NVarChar, 500, (cbDelete.Checked ? "1" : "0")),
 
