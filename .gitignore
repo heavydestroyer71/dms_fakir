@@ -51,3 +51,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/FakirDMS/Uploads
+/FakirDMS/UI
+/packages
+/FakirDMS
+/CoreLibrary/ILLink

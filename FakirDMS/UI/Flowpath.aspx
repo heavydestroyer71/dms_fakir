@@ -236,22 +236,44 @@
 									</asp:TemplateField>
 									      <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Payable varchar no">
 											  <ItemTemplate>
-												  <asp:CheckBox runat="server"ID="gcbIsPayableVarcharNo"Checked='<%#Eval("IsPayableVarcharNo")%>'Enabled="false"ToolTip="Flow user can enter bill related information." />
+												<asp:CheckBox runat="server" ID="gcbIsPayableVarchardate" Checked='<%# Eval("IsAccountPayableVarDate") %>' Enabled="false" ToolTip="Flow user can enter bill related information." />
+
+
 											  </ItemTemplate>
 									      </asp:TemplateField>
 									<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="payment varchar Date">
 										<ItemTemplate>
-											<asp:CheckBox runat="server"ID="gcbIsPayableVarchardate"Checked='<%#Eval("IsAccountPayableVarDate")%>'Enabled="false"ToolTip="Flow user can enter bill related information." />
+											<asp:CheckBox runat="server" ID="gcbIsPayableVarchardate" Checked='<%#Eval("IsAccountPayableVarDate")%>' Enabled="false" ToolTip="Flow user can enter bill related information." />
+										</ItemTemplate>
+									</asp:TemplateField>
+
+
+							<%-- 	<asp:TemplateField ItemStyle-HorizontalAlign="Center"HeaderText="payment varchar Date">
+										<ItemTemplate>
+											<asp:CheckBox runat="server" ID="gcbIsPaymentVarcharNo" Checked='<%# Eval("IspaymentVarNo") %>' Enabled="false" ToolTip="Flow user can enter bill related information." />
+
 										</ItemTemplate>
 									</asp:TemplateField>
 									<asp:TemplateField ItemStyle-HorizontalAlign="Center"HeaderText="payment varchar Date">
 										<ItemTemplate>
-											<asp:CheckBox runat="server" ID="gcbIsPaymentVarcharNo" Checked='<%#Eval("IspaymentVarNo")%>'Enabled="false" ToolTip="Flow user can enter bill related information." />
+											<asp:CheckBox runat="server"ID="gcbIsPaymentVarchardate"Checked='<%#Eval("IsPaymentDate")%>'Enabled="false"ToolTip="Flow user can enter bill related information." />
 										</ItemTemplate>
 									</asp:TemplateField>
-									<asp:TemplateField ItemStyle-HorizontalAlign="Center"HeaderText="payment varchar Date">
-										<ItemTemplate>
-											<asp:CheckBox runat="server"ID="gcbIsPaymentVarchardate"Checked='<%#Eval("IsPaymentDate")%>'Enabled="false"ToolTip="Flow user can enter bill related information." /></ItemTemplate></asp:TemplateField>
+								--%>
+
+
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="payment varchar Date">
+    <ItemTemplate>
+        <asp:CheckBox runat="server" ID="gcbIsPaymentVarcharNo" Checked='<%# Eval("IspaymentVarNo") %>' Enabled="false" ToolTip="Flow user can enter bill related information." />
+    </ItemTemplate>
+</asp:TemplateField>
+
+<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="payment varchar Date">
+    <ItemTemplate>
+        <asp:CheckBox runat="server" ID="gcbIsPaymentVarchardate" Checked='<%# Eval("IsPaymentDate") %>' Enabled="false" ToolTip="Flow user can enter bill related information." />
+    </ItemTemplate>
+</asp:TemplateField>
+									
 									<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Amount">
 										<ItemTemplate>
 											<asp:CheckBox runat="server" ID="gcbAmountEnable" Checked='<%#Eval("IsAmount")%>' Enabled="false" ToolTip="Flow user can enter bill amount information." />
