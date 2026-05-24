@@ -234,14 +234,14 @@
 											<asp:CheckBox runat="server" ID="gcbBillEnable" Checked='<%#Eval("IsBill")%>' Enabled="false" ToolTip="Flow user can enter bill related information." />
 										</ItemTemplate>
 									</asp:TemplateField>
-									      <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Payable varchar no">
+									      <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Payable Voucher no">
 											  <ItemTemplate>
 												<asp:CheckBox runat="server" ID="gcbIsPayableVarchardate" Checked='<%# Eval("IsAccountPayableVarDate") %>' Enabled="false" ToolTip="Flow user can enter bill related information." />
 
 
 											  </ItemTemplate>
 									      </asp:TemplateField>
-									<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="payment varchar Date">
+									<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="payment Voucher Date">
 										<ItemTemplate>
 											<asp:CheckBox runat="server" ID="gcbIsPayableVarchardate" Checked='<%#Eval("IsAccountPayableVarDate")%>' Enabled="false" ToolTip="Flow user can enter bill related information." />
 										</ItemTemplate>
