@@ -1973,8 +1973,8 @@ namespace FakirDMS.UI
 					String sPoId = GetSelectedIdByGridView(gvPurchaseOrder).Replace("&nbsp;", "0");
 					//String sPiId = GetSelectedIdByGridView(gvProformaInvoice).Replace("&nbsp;", "0");
 					String sPiId = "0";
-
-					DataTable dataTable = await ApiClient.GetMaterialReceiveByPoId(sPoId, sPiId);
+					string sCatId = ddlExpenseType.SelectedValue;
+					DataTable dataTable = await ApiClient.GetMaterialReceiveByPoId(sPoId, sPiId, sCatId);
 					BindGridViewMR_Details(dataTable);
 				}
 			}
@@ -2248,7 +2248,7 @@ namespace FakirDMS.UI
 
 			CatgId = (String.IsNullOrEmpty(CatgId) ? "0" : CatgId);
 
-			if (CatgId == "114") { CatgId = "0"; }
+			//if (CatgId == "114") { CatgId = "0"; }
 
 			modalExtenderDetails.Show();
 			if (!String.IsNullOrEmpty(ptxtSearchWith.Text))

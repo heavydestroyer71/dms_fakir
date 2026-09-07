@@ -1478,8 +1478,9 @@ namespace FakirDMS.UI
                     divTextBoxDetails.Visible = false;
                     String sPoId = GetSelectedIdByGridView(gvPurchaseOrder).Replace("&nbsp;", "0");
                     String sPiId = GetSelectedIdByGridView(gvProformaInvoice).Replace("&nbsp;", "0");
+                    String sCatId = ddlExpenseType.SelectedValue;
 
-                    DataTable dataTable = await ApiClient.GetMaterialReceiveByPoId(sPoId, sPiId);
+					DataTable dataTable = await ApiClient.GetMaterialReceiveByPoId(sPoId, sPiId, sCatId);
                     BindGridViewMR_Details(dataTable);
                 }
             }

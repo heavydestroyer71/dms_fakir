@@ -285,7 +285,7 @@
 									<asp:BoundField DataField="TrackingDate" HeaderText="Tracking Date" />
 									<asp:TemplateField HeaderText="MRR No.">
 										<ItemTemplate>
-											<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "http://192.168.100.4/fakirfashion_erp/inventory/general_store/requires/general_item_receive_controller.php?data="+ Eval("MrrId")+"&action=general_item_receive_print_new&dms_token=FFLDMS2024" %>'
+											<asp:HyperLink ID="HyperLink1" runat="server">'
 												Text='<%#Eval("MrrNo") %>' ToolTip='<%#Eval("MrrNo") %>' Target="_blank">
 											</asp:HyperLink>
 										</ItemTemplate>

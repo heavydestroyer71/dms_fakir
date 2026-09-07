@@ -71,9 +71,9 @@ namespace CoreLibrary
             return await RequestDataTable(ApiEndpoint.MaterialReceiveInfo(CatgId, mrrNo));
         }
 
-        public static async Task<DataTable> GetMaterialReceiveByPoId(String poId, String piId)
+        public static async Task<DataTable> GetMaterialReceiveByPoId(String poId, String piId, string sCatId)
         {
-            return await RequestDataTable(ApiEndpoint.MaterialReceiveByPoId(poId, piId));
+            return await RequestDataTable(ApiEndpoint.MaterialReceiveByPoId(poId, piId, sCatId));
         }
         #endregion
 

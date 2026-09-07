@@ -107,16 +107,20 @@ namespace CoreLibrary
 			return sFullUrl;
 
 		}
-		public static String MaterialReceiveByPoId(String PoId,String PiId)
+		public static String MaterialReceiveByPoId(String PoId,String PiId, string CatId)
         {
             String sPoPart = "Mrr/mrr_no/0/parchase_order_ids/";
             String sPiPart = "/pi_ids/";
-            PoId = (String.IsNullOrEmpty(PoId) ? "0" : PoId);
+            string sCatIdPart = "/catg_id/";
+
+			PoId = (String.IsNullOrEmpty(PoId) ? "0" : PoId);
             PiId = (String.IsNullOrEmpty(PiId) ? "0" : PiId);
+			CatId = (String.IsNullOrEmpty(CatId) ? "0" : CatId);
 
 
-            String sFullUrl = sBaseUrl() + sPoPart + PoId+ sPiPart+ PiId;
-            return sFullUrl;
+            String sFullUrl = sBaseUrl() + sPoPart + PoId + sPiPart + PiId + sCatIdPart+CatId;
+
+			return sFullUrl;
         }
         #endregion
 
