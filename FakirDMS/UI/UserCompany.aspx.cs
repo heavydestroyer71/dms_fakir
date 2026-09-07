@@ -105,7 +105,7 @@ namespace FakirDMS.UI
             {
                 DataTable dtCompany = PopulateLists.GetCompanies();
                 DataTable dtLocation = PopulateLists.GetLocations();
-                DataTable dtSerivce = PopulateLists.GetCategorys();
+                DataTable dtSerivce = PopulateLists.GetCategoryswithReport();
 
                 ViewState["Company"] = dtCompany;
                 ViewState["Location"] = dtLocation;

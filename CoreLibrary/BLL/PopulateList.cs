@@ -20,8 +20,17 @@ namespace CoreLibrary
             };
             return dataManager.GetDataTable("SP_SYS_POPULATE_LIST", parameters);
         }
+		public static DataTable GetCategoryswithReport()
+		{
+			DataManager dataManager = new DataManager();
+			SqlParameter[] parameters = new SqlParameter[1]
+			{
+					 dataManager.MakeInParam("@Action", SqlDbType.NVarChar, 500, "CategoryReport")
+			};
+			return dataManager.GetDataTable("SP_SYS_POPULATE_LIST", parameters);
+		}
 
-        public static DataTable GetFlowsByCategory(String CategoryId)
+		public static DataTable GetFlowsByCategory(String CategoryId)
         {
             DataManager dataManager = new DataManager();
             SqlParameter[] parameters = new SqlParameter[2]
