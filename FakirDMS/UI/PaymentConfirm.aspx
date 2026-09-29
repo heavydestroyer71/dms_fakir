@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Payment Confirm | DMS" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PaymentConfirm.aspx.cs" Inherits="FakirDMS.UI.PaymentConfirm" %>
+﻿<%@ Page Title="Payment Confirm | DMS" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PaymentConfirm.aspx.cs" Inherits="FakirDMS.UI.PaymentConfirm" UnobtrusiveValidationMode="None" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
@@ -68,8 +68,7 @@
 									<asp:TemplateField HeaderText="Select" HeaderStyle-Width="50px" ItemStyle-CssClass="50px" ItemStyle-HorizontalAlign="Center">
 										<ItemTemplate>
 											<asp:HiddenField runat="server" ID="gvHfDocumentId" Value='<%#Eval("DocumentID") %>' />
-											<asp:CheckBox runat="server" ID="gvCbSelect" AutoPostBack="True" 
-    OnCheckedChanged="gvCbSelect_CheckedChanged" />
+											<asp:CheckBox runat="server" ID="gvCbSelect"/>
 										</ItemTemplate>
 									</asp:TemplateField>
 									<asp:TemplateField HeaderText="Tracking No.">

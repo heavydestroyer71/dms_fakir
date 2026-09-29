@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Bill Status Report | DMS" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AllDocumentReport.aspx.cs" Inherits="FakirDMS.UI.AllDocumentReport" %>
-
+﻿<%@ Page Title="Bill Status Report | DMS" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AllDocumentReport.aspx.cs" Inherits="FakirDMS.UI.AllDocumentReport"%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderPlaceHolder" runat="server">

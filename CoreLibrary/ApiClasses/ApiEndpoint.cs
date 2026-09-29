@@ -1,35 +1,47 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace CoreLibrary
 {
     public class ApiEndpoint
     {
-        #region Private Properties of API EndPoint Url
-        // private static String sBaseUrl = "http://192.168.100.4/fakirfashion_erp/logic-api/index.php/api/dms/Dms/";
-
-      
-        //private static String sRequisitionUrl = "purchase_requisition_details/catg_id/@catg_id@/requ_no/";
-        //private static String sPurchaseOrderUrl = "purchase_order_details/catg_id/@catg_id@/order_no/";
-        //private static String sProformaInvoiceUrl = "Pi_info/catg_id/@catg_id@/pi_no/";
-        //private static String sLetterOfCreditUrl = "Lc/catg_id/@catg_id@/lc_number/";
-        //private static String sMaterialReceiveUrl = "Mrr/catg_id/@catg_id@/mrr_no/";
-        //private static String sCategoryUrl = "item_category_list/catg_id/";
+		#region Private Properties of API EndPoint Url
+		// private static String sBaseUrl = "http://192.168.100.4/fakirfashion_erp/logic-api/index.php/api/dms/Dms/";
 
 
-        //private static String sPurchaseOrderByReqUrl = "purchase_order_details/order_no/0/requ_id/";
-        //private static String sProformaInvoiceByPoUrl = "Pi_info/pi_no/0/work_order/";
-        //private static String sLetterOfCreditByPiUrl = "Lc/lc_number/0/pi_id/";
-        #endregion
+		//private static String sRequisitionUrl = "purchase_requisition_details/catg_id/@catg_id@/requ_no/";
+		//private static String sPurchaseOrderUrl = "purchase_order_details/catg_id/@catg_id@/order_no/";
+		//private static String sProformaInvoiceUrl = "Pi_info/catg_id/@catg_id@/pi_no/";
+		//private static String sLetterOfCreditUrl = "Lc/catg_id/@catg_id@/lc_number/";
+		//private static String sMaterialReceiveUrl = "Mrr/catg_id/@catg_id@/mrr_no/";
+		//private static String sCategoryUrl = "item_category_list/catg_id/";
 
-        #region Public Properties of API EndPoint Url
 
-        public static String CategoryInfo(String CatgId)
+		//private static String sPurchaseOrderByReqUrl = "purchase_order_details/order_no/0/requ_id/";
+		//private static String sProformaInvoiceByPoUrl = "Pi_info/pi_no/0/work_order/";
+		//private static String sLetterOfCreditByPiUrl = "Lc/lc_number/0/pi_id/";
+		#endregion
+
+		#region Public Properties of API EndPoint Url
+		public static string GetUserName()
+		{
+			string UserName = string.Empty;
+
+			if (HttpContext.Current != null && HttpContext.Current.Request.Cookies[CookieKey.UserName.ToString()] != null)
+			{
+				UserName = HttpContext.Current.Request.Cookies[CookieKey.UserName.ToString()].Value;
+			}
+
+			return UserName;
+		}
+		public static String CategoryInfo(String CatgId)
         {
             String sCategoryUrl = "item_category_list/catg_id/";
             String sFullUrl = sBaseUrl() + sCategoryUrl + CatgId;
@@ -119,7 +131,7 @@ namespace CoreLibrary
 
 
             String sFullUrl = sBaseUrl() + sPoPart + PoId + sPiPart + PiId + sCatIdPart+CatId;
-
+			LogUrl(sFullUrl);
 			return sFullUrl;
         }
         #endregion
@@ -129,7 +141,37 @@ namespace CoreLibrary
             String sBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"].ToString();
             return sBaseUrl;
         }
+		private static readonly object _logLock = new object();
 
-        
-    }
+		private static void LogUrl(string url)
+		{
+			try
+			{
+				string logDir = System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/APILogs");
+
+				if (!System.IO.Directory.Exists(logDir))
+				{
+					System.IO.Directory.CreateDirectory(logDir);
+				}
+
+				// One file per date, e.g. MaterialReceiveByPoId_Log_2026-09-29.txt
+				string logFile = System.IO.Path.Combine(logDir,
+					"MaterialReceiveByPoId_Log_" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+                
+				string logEntry = GetUserName() + Environment.NewLine + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + Environment.NewLine
+								 + url + Environment.NewLine
+								 + Environment.NewLine;
+
+				lock (_logLock)
+				{
+					System.IO.File.AppendAllText(logFile, logEntry);
+				}
+			}
+			catch
+			{
+				// Logging must never break the calling method.
+			}
+		}
+
+	}
 }

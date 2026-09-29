@@ -285,9 +285,12 @@
 									<asp:BoundField DataField="TrackingDate" HeaderText="Tracking Date" />
 									<asp:TemplateField HeaderText="MRR No.">
 										<ItemTemplate>
-											<asp:HyperLink ID="HyperLink1" runat="server">'
-												Text='<%#Eval("MrrNo") %>' ToolTip='<%#Eval("MrrNo") %>' Target="_blank">
-											</asp:HyperLink>
+											<asp:HyperLink ID="HyperLink1" runat="server"
+    NavigateUrl='<%# GetMrrUrl(Eval("MrrId"), Eval("MrrNo")) %>'
+    Text='<%# Eval("MrrNo") %>'
+    ToolTip='<%# Eval("MrrNo") %>'
+    Target="_blank">
+</asp:HyperLink>
 										</ItemTemplate>
 									</asp:TemplateField>
 									<asp:BoundField DataField="MrrDate" HeaderText="MRR Date" />

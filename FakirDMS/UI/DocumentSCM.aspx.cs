@@ -70,6 +70,7 @@ namespace FakirDMS.UI
 
 			if (!Page.IsPostBack)
 			{
+				divAiprocess.Visible = false; //on testing
 				user_role = _user.GetCookie(CookieKey.RoleId.ToString()).ToInt();
 				this.Form.DefaultButton = btnDefault.UniqueID;
 				txtEntryDate.Text = System.DateTime.Now.ToString("yyyy-MM-dd");
@@ -1121,8 +1122,8 @@ namespace FakirDMS.UI
 					}
 					else
 					{
-						isSuccess = Convert.ToBoolean(dsDashboard.Tables[3].Rows[0]["IsSuccess"].ToString());
-						DisplayMessage(dsDashboard.Tables[3].Rows[0]["Message"].ToString());
+						isSuccess = Convert.ToBoolean(dsDashboard.Tables[0].Rows[0]["IsSuccess"].ToString());
+						DisplayMessage(dsDashboard.Tables[0].Rows[0]["Message"].ToString());
 					}
 				}
 				else
@@ -1589,7 +1590,18 @@ namespace FakirDMS.UI
 					System.Reflection.MethodBase.GetCurrentMethod().Name, ex);
 			}
 		}
+		protected string GetMrrUrl(object mrrIdObj, object mrrNoObj)
+		{
+			string mrrId = mrrIdObj != null ? mrrIdObj.ToString().Replace("&nbsp;", "").Trim() : string.Empty;
+			string mrrNo = mrrNoObj != null ? mrrNoObj.ToString().Trim() : string.Empty;
 
+			if (mrrId == "411")
+			{
+				return $"http://192.168.100.4/fakirfashion_erp/subcontract_bill/outbound_billing/requires/general_service_bill_entry_controller.php?data=1*{mrrId}*{mrrNo}*1*General%20Service%20Bill%20Entry&action=general_service_bill_entry_print&dms_token=FFLDMS2024";
+			}
+
+			return $"http://192.168.100.4/fakirfashion_erp/inventory/general_store/requires/general_item_receive_controller.php?data={mrrId}&action=general_item_receive_print_new&dms_token=FFLDMS2024";
+		}
 		protected void LoadMrrList()
 		{
 			txtTotalMrrAmt.Text = "0";
@@ -2184,7 +2196,14 @@ namespace FakirDMS.UI
 				newRow["Date"] = row["RECEIVE_DATE"].ToString().Replace("&nbsp;", "");
 				newRow["ChallanNo"] = row["CHALLAN_NO"].ToString().Replace("&nbsp;", "");
 				newRow["Supplier"] = "";
-				newRow["ReportPath"] = "http://192.168.100.4/fakirfashion_erp/inventory/general_store/requires/general_item_receive_controller.php?data=" + row["ID"].ToString().Replace("&nbsp;", "") + "&action=general_item_receive_print_new&dms_token=FFLDMS2024";
+				if (row["ITEM_CATEGORY"].ToString() == "114")
+				{
+					newRow["ReportPath"] = "http://192.168.100.4/fakirfashion_erp/subcontract_bill/outbound_billing/requires/general_service_bill_entry_controller.php?data=1*"+ row["ID"].ToString().Replace("&nbsp;", "") +"*"+ row["RECV_NUMBER"].ToString() + "*1*%E2%9D%8F%20General%20Service%20Bill%20Entry&action=general_service_bill_entry_print&dms_token=FFLDMS2024";
+				}
+				else
+				{
+					newRow["ReportPath"] = "http://192.168.100.4/fakirfashion_erp/inventory/general_store/requires/general_item_receive_controller.php?data=" + row["ID"].ToString().Replace("&nbsp;", "") + "&action=general_item_receive_print_new&dms_token=FFLDMS2024";
+				}
 				newRow["MrrAmt"] = row["CONS_AMOUNT"].ToString().Replace("&nbsp;", "");
 				NewDataTable.Rows.Add(newRow);
 
