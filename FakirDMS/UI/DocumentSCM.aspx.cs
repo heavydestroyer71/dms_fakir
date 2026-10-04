@@ -141,18 +141,18 @@ namespace FakirDMS.UI
 				ControlVisibility();
 				divStoreLocation.Visible = false;
 
-				if (user_role == 4 || user_role == 23)
-				{
-					btnLoadMrrListAPI.Visible = true;
-					btnLoadMrrListMCD.Visible = true;
-					//txtPaymentVoucherNo.ReadOnly = true;
-				}
-				else
-				{
-					btnLoadMrrListAPI.Visible = false;
-					btnLoadMrrListMCD.Visible = false;
-					txtPaymentVoucherNo.ReadOnly = true;
-				}
+				//if (user_role == 4 || user_role == 23 || user_role == 40)
+				//{
+				//	btnLoadMrrListAPI.Visible = true;
+				//	btnLoadMrrListMCD.Visible = true;
+				//	//txtPaymentVoucherNo.ReadOnly = true;
+				//}
+				//else
+				//{
+				//	btnLoadMrrListAPI.Visible = false;
+				//	btnLoadMrrListMCD.Visible = false;
+				//	txtPaymentVoucherNo.ReadOnly = true;
+				//}
 
 				if (user_role != 6 && user_role != 25 && user_role != 33 && user_role != 34)
 				{
@@ -192,17 +192,17 @@ namespace FakirDMS.UI
 			txtVoucherDate.Enabled = activity.IsAccountPayableVarDate;
 			txtPaymentVoucherNo.Enabled = activity.IspaymentVarNo;
 			txtPaymentVoucherDate.Enabled = activity.IsPaymentDate;
-			//divMrrTracking.Visible = activity.IsEnableMR;
+			divMrrTracking.Visible = activity.IsEnableMR;
 			//divMrrTracking.Visible = activity.IsEnableMR;
 
-			//if (!activity.IsEnableMR)
-			//{
-			//    divMrrTracking.Visible = false;
-			//}
-			//else
-			//{
-			//    divMrrTracking.Visible = true;
-			//}
+			if (!activity.IsEnableMR)
+			{
+				divMrrTracking.Visible = false;
+			}
+			else
+			{
+				divMrrTracking.Visible = true;
+			}
 
 			if (!activity.IsEnableAccounts)
 			{
